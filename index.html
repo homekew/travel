@@ -112,6 +112,14 @@ section.closed h2 .chev,.region-head.closed .chev{transform:rotate(-90deg)}
 .vchip b{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--goldl);font-weight:600}
 .maplink{font-size:.8rem}
 .note26{margin-top:12px;font-size:.82rem;background:var(--sage);border:1px solid #A8BEC8;border-left:3px solid var(--river2);color:var(--river);padding:9px 12px;border-radius:8px}
+.marks{display:flex;gap:6px;margin-left:4px}
+.mk{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-size:.82rem;line-height:1;display:grid;place-items:center;color:var(--ink2);padding:0}
+.mk:hover{border-color:var(--river2)}
+.mk.mkv.on{background:var(--river);border-color:var(--river);color:#fff}
+.mk.mku.on{background:#F5EFE3;border-color:var(--gold)}
+.mk.mkd.on{background:#FDF3F3;border-color:var(--danger)}
+.dest.visited .dname::after{content:"✓ visited";margin-left:8px;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--river2)}
+.pill.special{border-style:dashed}
 .tagsline{display:flex;gap:5px;flex-wrap:wrap}
 .tagsline .badge{font-size:.62rem}
 /* ---------- summary table ---------- */
@@ -624,7 +632,7 @@ act:"The famous knee-deep photo, plunge dares, picnic, watching climbers set off
 r:{wa:8,sw:3,cr:3,wi:5,ph:10,re:7,pi:6,sc:9,ad:5,ov:7},worth:"15 unforgettable minutes minimum",len:"1–2 hours",back:"Every Cascade Lakes trip",tags:["wade","swim"]},
 {id:"elk",name:"Elk Lake",region:"west",type:"390-acre lake with beaches & resort",drive:50,temp:"mid-60s°F",gps:"43.976,-121.808",elev:"4,884 ft",agency:"Deschutes NF / Elk Lake Resort",months:"Jun–Sep",crowds:"High summer weekends — the corridor's social hub",fees:"$5/day or NW Forest Pass at FS day-use areas",
 water:"Clear blue; warms better than its neighbors (surface mid-60s °F possible in August); sandy-gravel entries at the beaches, moderate drop-off beyond.",
-wade:"One of the corridor's two best swim lakes. Sunset View and the Beach day-use areas have gentle sandy entries; Little Fawn beach is the calmest for younger swimmers.",
+wade:"One of the corridor's two best swim lakes. The aptly named BEACH day-use area on the south shore is the marquee swim — wide sandy entry, afternoon sun, room to camp out all day — with Sunset View as backup and Little Fawn the calmest for younger swimmers.",
 special:"Real sandy beaches, reliable afternoon sailing breeze, a resort with SUP/kayak/pedal-boat rentals and a burger deck, and Bachelor-to-South-Sister views.",
 wildlife:"Osprey, eagles, kokanee and brook trout.",
 bugs:"Moderate June–July, mild at the breezy beaches",
@@ -1314,6 +1322,68 @@ amen:"Roadside pullouts; vault toilets at Quinn Meadow Horse Camp (campers); no 
 act:"Creek wading, critter hunting, wildflower photos, a leg-stretch stop between Elk Lake and Hosmer.",
 r:{wa:6,sw:1,cr:7,wi:6,ph:6,re:8,pi:6,sc:7,ad:4,ov:5},worth:"A charming 45-minute stop",len:"30–90 min",back:"In passing",tags:["creek","wade","free","wildlife"]}
 );
+let MARKS={};try{MARKS=JSON.parse(localStorage.getItem("cowg-marks")||"{}")}catch(e){}
+function saveMarks(){try{localStorage.setItem("cowg-marks",JSON.stringify(MARKS))}catch(e){}}
+function paintMarks(sp,id){
+  const m=MARKS[id]||{};
+  sp.querySelector(".mkv").classList.toggle("on",!!m.v);
+  sp.querySelector(".mku").classList.toggle("on",m.t===1);
+  sp.querySelector(".mkd").classList.toggle("on",m.t===-1);
+  sp.closest(".dest").classList.toggle("visited",!!m.v);
+}
+let visitedOnly=false;
+D.push(
+{id:"candlecreek",name:"Candle Creek",region:"nw",type:"Cold tributary of the lower Metolius",temp:"40s°F",drive:75,gps:"44.558,-121.648",elev:"~2,600 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Very low",fees:"Free day use; primitive camping fees may apply",
+water:"Cold, very clear little creek tumbling into the lower Metolius near Candle Creek Campground; shin-deep riffles over cobble. GPS approximate.",
+wade:"Careful edge wading and rock-flipping for kids; the Metolius confluence pools are look-only (swift, cold).",
+special:"The wilder end of the Metolius country — old-growth shade, a primitive campground, and a real chance of having the whole creek to yourselves.",
+wildlife:"Bull trout use this drainage (a key spawning tributary — check ODFW regs before any fishing), elk, eagles, dippers.",
+bugs:"Moderate June–July",
+safety:"Remote with zero cell service; washboard gravel access; cold swift water at the confluence.",
+amen:"Primitive campground (vault toilet, no water); nothing else.",
+act:"Creek exploring, wildlife watching, quiet camping, confluence walk.",
+r:{wa:5,sw:1,cr:6,wi:7,ph:6,re:8,pi:5,sc:7,ad:7,ov:6},worth:"For solitude seekers, yes",len:"2–3 hours",back:"Occasionally",tags:["creek","wade","free","wildlife"]},
+{id:"trappercreek",name:"Trapper Creek (Odell Lake)",region:"south",type:"Kokanee spawning creek",temp:"40s–50s°F",drive:85,gps:"43.578,-122.045",elev:"~4,790 ft",agency:"Deschutes NF (Crescent RD)",months:"Jun–Oct; September for the kokanee run",crowds:"Low; a stream of admirers in late September",fees:"Free; day-use fees at adjacent Shelter Cove marina area",
+water:"Odell Lake's cold, clear inlet creek at the west end near Shelter Cove; shallow gravel riffles perfect for looking, not swimming. GPS approximate.",
+wade:"Toe-dipping only in the lower reach — and in fall, stay out entirely to protect spawning fish. This is a watching creek.",
+special:"In September the creek turns scarlet with thousands of spawning kokanee, one of the best free wildlife spectacles in Central Oregon. A short, flat walkable reach makes it easy with kids.",
+wildlife:"The kokanee run, bald eagles and osprey working the fish, mergansers; fishing is closed in the spawning channel — observe only.",
+bugs:"Moderate June–July, gone by the fall run",
+safety:"Do not disturb spawning gravel (redds); afternoon wind at the lake; cold water.",
+amen:"Shelter Cove Resort store nearby, campground, vault toilets.",
+act:"Fall kokanee viewing, photography, nature journaling, pairing with an Odell fishing morning.",
+r:{wa:3,sw:1,cr:5,wi:10,ph:8,re:8,pi:6,sc:8,ad:4,ov:7},worth:"In late September, absolutely",len:"1–2 hours",back:"Every fall",tags:["creek","wildlife","free","trail"]},
+{id:"odellcreek",name:"Odell Creek at Davis Lake",region:"south",type:"Meadow creek & lake inlet",temp:"50s°F",drive:75,gps:"43.57,-121.84",elev:"~4,390 ft",agency:"Deschutes NF (Crescent RD)",months:"May–early Jul (before the lake shrinks)",crowds:"Very low",fees:"Free/NW Forest Pass where posted",
+water:"Small, clear meadow creek winding into Davis Lake's marshy south end near East Davis Campground; shallow and slow. GPS approximate.",
+wade:"Gentle wading in the creek proper; the lake margins are mucky — stay on the creek gravel.",
+special:"Prime bird country: the creek mouth marsh is where the sandhill cranes, terns, and grebes concentrate. A binoculars-first destination with a wade on the side.",
+wildlife:"Sandhill cranes, yellow rails historically, grebes, eagles, dawn elk; big Davis Lake rainbows stage near the mouth (check regs — mouth areas often closed).",
+bugs:"CLOUDS May–early July — the marsh price; much better late season",
+safety:"Remote, soft marsh edges, no services, no cell.",
+amen:"East Davis CG (vault toilets, no water).",
+act:"Birding, creek wading, photography, early-season canoe pairing with Davis Lake.",
+r:{wa:5,sw:1,cr:6,wi:9,ph:7,re:8,pi:5,sc:7,ad:5,ov:6},worth:"For bird families, worth it",len:"2–3 hours",back:"Early summer",tags:["creek","wade","wildlife","free"]},
+{id:"mckaycreekup",name:"Upper McKay Creek (Ochoco NF)",region:"east",type:"Small forest creek",temp:"50s–60s°F",drive:60,gps:"44.45,-120.75",elev:"~4,000 ft",agency:"Ochoco NF",months:"May–Jul (can run thin by late summer)",crowds:"Very low",fees:"Free",
+water:"A small, clear creek in ponderosa forest north of Prineville, reached via McKay Creek Rd; ankle-deep riffles with dispersed campsites scattered along it. GPS and access details approximate — pavement ends and roads are unsigned in places; carry a forest map.",
+wade:"Easy shallow wading and dam-building; flows drop noticeably by August.",
+special:"The Ochocos' version of a lazy creek afternoon: shade, space, free dispersed camping, and nobody around on weekdays.",
+wildlife:"Redband trout fry, deer, elk, wild turkeys, woodpeckers.",
+bugs:"Light–moderate early summer",
+safety:"No facilities or cell service; unsigned roads; hunting seasons in fall.",
+amen:"None — dispersed sites only.",
+act:"Creek play, picnic, first dispersed-camping trial run.",
+r:{wa:6,sw:1,cr:6,wi:6,ph:5,re:8,pi:6,sc:6,ad:5,ov:5},worth:"En route to the Ochocos, sure",len:"2–4 hours",back:"Occasionally",tags:["creek","wade","free"]},
+{id:"markscreek",name:"Marks Creek (Bandit Springs, Hwy 26)",region:"east",type:"Roadside meadow creek",temp:"50s–60s°F",drive:65,gps:"44.42,-120.55",elev:"~4,400 ft",agency:"Ochoco NF",months:"May–Jul",crowds:"Very low",fees:"Free",
+water:"A modest meadow creek paralleling Hwy 26 on the climb toward Ochoco Pass, easiest reached near the Bandit Springs rest area; shallow, clear early season, thin by August. GPS approximate.",
+wade:"Simple ankle wading and critter hunting during the early-summer window.",
+special:"A zero-effort leg-stretch creek on the way to Walton Lake or the Painted Hills — rest-area parking, meadow views, five steps to the water.",
+wildlife:"Songbirds, deer, dragonflies, the occasional badger den in the meadow.",
+bugs:"Moderate early summer",
+safety:"Highway proximity — keep kids on the meadow side; grazing cattle possible (close gates, watch footing).",
+amen:"Bandit Springs rest area (toilets); nothing else.",
+act:"Leg-stretch wade, picnic, Painted Hills-day bonus stop.",
+r:{wa:5,sw:1,cr:5,wi:5,ph:4,re:7,pi:6,sc:5,ad:3,ov:4},worth:"As a passing stop, yes",len:"30–60 min",back:"In passing",tags:["creek","wade","free"]}
+);
 // ---------- render ----------
 const RL={wa:"Wading",sw:"Swimming",cr:"Creek explor.",wi:"Wildlife",ph:"Photography",re:"Relaxing",pi:"Picnicking",sc:"Scenic beauty",ad:"Adventure",ov:"OVERALL"};
 function esc(s){return (s||"").replace(/&(?!amp;|lt;|gt;)/g,"&amp;")}
@@ -1327,6 +1397,7 @@ function card(d){
     <div class="dname">${esc(d.name)}<small>${esc(d.type)} · ${esc(d.agency)}</small></div>
     <span class="badge drive">🚗 ${d.driveLabel||d.drive+" min"}</span>
     <span class="badge">${RSHORT[d.region]}</span>
+    <span class="marks" data-id="${d.id}"><button class="mk mkv" title="Mark as visited">✓</button><button class="mk mku" title="Thumbs up">👍</button><button class="mk mkd" title="Thumbs down">👎</button></span>
   </summary>
   <div class="dbody">
     <div class="tagsline" style="margin-top:10px">${tags}</div>
@@ -1367,6 +1438,19 @@ function render(){
     html+=`<div class="rbody collapsed" id="rb-${rg}">`+items.map(card).join("")+`</div>`;
   }
   c.innerHTML=html;
+  c.querySelectorAll(".marks").forEach(sp=>{
+    paintMarks(sp,sp.dataset.id);
+    sp.addEventListener("click",e=>{
+      e.preventDefault();e.stopPropagation();
+      const b=e.target.closest(".mk");if(!b)return;
+      const id=sp.dataset.id,m=MARKS[id]=MARKS[id]||{};
+      if(b.classList.contains("mkv"))m.v=m.v?0:1;
+      else if(b.classList.contains("mku"))m.t=(m.t===1?0:1);
+      else m.t=(m.t===-1?0:-1);
+      saveMarks();paintMarks(sp,id);
+      if(visitedOnly)applyFilters();
+    });
+  });
   c.querySelectorAll(".region-head").forEach(h=>h.onclick=()=>{
     const rb=document.getElementById("rb-"+h.dataset.rg);
     rb.classList.toggle("collapsed");
@@ -1380,10 +1464,14 @@ const active=new Set();
 function buildPills(){
   const p=document.getElementById("pills");
   p.innerHTML=Object.entries(TAGS).map(([k,v])=>`<button class="pill" data-t="${k}">${v}</button>`).join("");
-  p.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{
+  p.insertAdjacentHTML("beforeend",'<button class="pill special" id="pvisited">✓ Visited</button>');
+  p.querySelectorAll(".pill:not(.special)").forEach(b=>b.onclick=()=>{
     const t=b.dataset.t; active.has(t)?active.delete(t):active.add(t);
     b.classList.toggle("on"); applyFilters();
   });
+  document.getElementById("pvisited").onclick=e=>{
+    visitedOnly=!visitedOnly;e.target.classList.toggle("on",visitedOnly);applyFilters();
+  };
 }
 function applyFilters(){
   const q=document.getElementById("q").value.toLowerCase().trim();
@@ -1393,8 +1481,9 @@ function applyFilters(){
     const hay=(d.name+" "+d.type+" "+d.special+" "+d.wildlife+" "+d.act+" "+d.water+" "+(d.tags||[]).map(t=>TAGS[t]).join(" ")).toLowerCase();
     const okQ=!q||hay.includes(q);
     const okT=[...active].every(t=>(d.tags||[]).includes(t));
-    el.classList.toggle("hidden",!(okQ&&okT));
-    if(okQ&&okT)shown++;
+    const okV=!visitedOnly||!!(MARKS[d.id]&&MARKS[d.id].v);
+    el.classList.toggle("hidden",!(okQ&&okT&&okV));
+    if(okQ&&okT&&okV)shown++;
   });
   document.querySelectorAll(".region-head").forEach(h=>{
     const rg=h.dataset.rg;
@@ -1402,7 +1491,7 @@ function applyFilters(){
     h.classList.toggle("hidden",!any);
     const rb=document.getElementById("rb-"+rg);
     rb.classList.toggle("hidden",!any);
-    if((q||active.size)&&any){rb.classList.remove("collapsed");h.classList.remove("closed");}
+    if((q||active.size||visitedOnly)&&any){rb.classList.remove("collapsed");h.classList.remove("closed");}
   });
   document.getElementById("shownCount").textContent=shown+" / "+D.length+" shown";
 }
