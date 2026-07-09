@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Central Oregon Water Adventure Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F4F1; --paper2:#E8E6DF; --ink:#1C1B18; --ink2:#5A5850;
+  --river:#1E3A4F; --river2:#456A7C; --sun:#C4952A; --sun2:#C4952A;
+  --gold:#C4952A; --goldl:#D4B84C; --line:#D0CCC2; --card:#fff; --danger:#8B2E2E; --sage:#C8D4DA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+/* ---------- header ---------- */
+header{
+  background:linear-gradient(160deg,var(--river) 0%,var(--river) 55%,var(--river2) 100%);
+  color:#fff;padding:64px 0 46px;position:relative;overflow:hidden;
+}
+.kicker{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--goldl)}
+h1{font-weight:700;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.02em;margin:.4em 0 .35em;max-width:18ch}
+h1 em{font-style:normal;font-weight:700;color:var(--goldl)}
+.sub{max-width:60ch;color:rgba(255,255,255,.78);font-size:1rem;font-weight:300;line-height:1.7}
+.hero-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hstat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 14px;font-size:.78rem;color:rgba(255,255,255,.7)}
+.hstat b{color:var(--goldl);font-size:1.05rem;display:block;font-weight:600}
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:40;background:rgba(30,58,79,.97);backdrop-filter:blur(6px)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+nav a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.82rem;font-weight:500;padding:11px 13px;white-space:nowrap;letter-spacing:.02em;border-bottom:3px solid transparent}
+nav a:hover{color:#fff;border-color:var(--gold)}
+/* ---------- sections ---------- */
+section{padding:44px 0 8px}
+h2{font-weight:700;font-size:clamp(1.35rem,2.8vw,1.6rem);letter-spacing:-.01em;color:var(--river);margin-bottom:6px}
+h2 .no{font-weight:600;font-size:.6em;color:var(--gold);vertical-align:middle;letter-spacing:.12em;margin-right:8px}
+.lede{color:var(--ink2);font-weight:300;max-width:75ch;margin-bottom:18px}
+h3{font-weight:600;font-size:1.1rem;color:var(--river);margin:22px 0 8px}
+/* ---------- planning grid ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin:16px 0}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.pcard h4{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--river2)}
+.pcard p,.pcard li{font-size:.9rem;color:var(--ink)}
+.pcard ul{padding-left:18px;margin:4px 0}
+.pcard .mono{font-size:.82rem;font-weight:600;color:var(--gold)}
+.callout{border:1px solid #A8BEC8;border-left:3px solid var(--river2);background:var(--sage);color:var(--river);padding:14px 18px;border-radius:8px;margin:14px 0;font-size:.92rem}
+.callout.red{border-color:#E0BEBE;border-left:3px solid var(--danger);background:#FDF3F3;color:#3D1A1A}
+a.ext{color:var(--gold);font-weight:500;text-decoration-color:rgba(196,149,42,.4)}
+a.ext:hover{color:var(--goldl)}
+/* ---------- filter bar ---------- */
+.filterbar{position:sticky;top:41px;z-index:30;background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-top:10px}
+.filterrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#q{flex:1 1 220px;min-width:180px;padding:9px 13px;border:1.5px solid var(--line);border-radius:22px;background:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--ink)}
+#q:focus{outline:2px solid var(--river);border-color:var(--river)}
+.tagpills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{border:1px solid var(--line);background:var(--paper2);color:var(--river2);border-radius:999px;padding:5px 14px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
+.pill.on{background:var(--river);color:#fff}
+.count{font-size:.75rem;font-weight:500;color:var(--ink2);margin-left:auto}
+/* ---------- destination cards ---------- */
+.region-head{display:flex;align-items:baseline;gap:14px;margin:40px 0 4px;border-bottom:2px solid var(--river);padding-bottom:6px}
+.region-head h2{margin:0}
+.region-head .rmeta{font-size:.72rem;font-weight:500;letter-spacing:.04em;color:var(--ink2)}
+.dest{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden;scroll-margin-top:104px}
+.tlink{color:var(--river);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(30,58,79,.25)}
+.tlink:hover{color:var(--gold);border-bottom-color:var(--gold)}
+.dest[open]{box-shadow:0 8px 26px rgba(30,58,79,.12)}
+.dest summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dest summary::-webkit-details-marker{display:none}
+.dest summary:hover{background:var(--paper)}
+.dname{font-weight:600;font-size:1.08rem;color:var(--river);flex:1 1 240px}
+.dname small{display:block;font-weight:400;font-size:.78rem;color:var(--ink2)}
+.badge{font-size:.66rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--paper2);border:1px solid var(--line);color:var(--river2);white-space:nowrap}
+.badge.drive{background:#E8EDF5;color:var(--river);border-color:#B5C8E8}
+.advring{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1.05rem;color:#fff;background:conic-gradient(var(--gold) calc(var(--p)*1%), rgba(196,149,42,.18) 0);position:relative;flex:0 0 44px}
+.advring i{position:absolute;inset:4px;border-radius:50%;background:var(--river);display:grid;place-items:center;font-style:normal}
+.advring span{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:.55rem;color:var(--ink2);letter-spacing:.06em}
+.dbody{padding:4px 20px 20px;border-top:1px solid var(--line)}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:4px 26px;margin:12px 0}
+.fact{font-size:.88rem;padding:5px 0;border-bottom:1px solid var(--paper2)}
+.fact b{color:var(--river2);font-weight:600;display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.09em}
+.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
+.blk{font-size:.88rem}
+.blk h5{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:4px}
+.blk.safety h5{color:var(--danger)}
+.blk.safety{background:#FDF3F3;border:1px solid #E0BEBE;border-radius:10px;padding:10px 12px;color:#3D1A1A}
+.ratings{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:3px 22px;background:var(--paper2);border-radius:10px;padding:12px 14px;margin-top:14px}
+.rr{display:flex;align-items:center;gap:8px;font-size:.76rem}
+.rr span{flex:0 0 88px;color:var(--ink2)}
+.rr .bar{flex:1;height:7px;background:var(--line);border-radius:4px;overflow:hidden}
+.rr .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--river),var(--river2));border-radius:4px}
+.rr em{font-style:normal;font-weight:600;font-size:.72rem;width:16px;text-align:right}
+.verdict{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.vchip{background:var(--river);color:#fff;border-radius:8px;padding:8px 12px;font-size:.78rem;flex:1 1 180px}
+.vchip b{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--goldl);font-weight:600}
+.maplink{font-size:.8rem}
+.note26{margin-top:12px;font-size:.82rem;background:var(--sage);border:1px solid #A8BEC8;border-left:3px solid var(--river2);color:var(--river);padding:9px 12px;border-radius:8px}
+.tagsline{display:flex;gap:5px;flex-wrap:wrap}
+.tagsline .badge{font-size:.62rem}
+/* ---------- summary table ---------- */
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:16px 0}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:760px}
+th{font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;text-align:left;background:var(--river);color:rgba(255,255,255,.85);padding:9px 12px;cursor:pointer;white-space:nowrap;position:sticky;top:0}
+th:hover{background:var(--river2)}
+td{padding:7px 12px;border-top:1px solid var(--paper2)}
+tbody tr:hover{background:var(--paper)}
+td.num{font-weight:600;color:var(--river)}
+/* ---------- curated lists ---------- */
+.lists{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:16px 0}
+.list{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.list h4{font-size:1rem;font-weight:600;color:var(--river2);margin-bottom:8px}
+.list h4::before{content:"◆ ";color:var(--gold);font-size:.8em}
+.list ol{padding-left:20px}
+.list li{font-size:.86rem;margin:5px 0}
+.list li b{font-weight:700}
+/* ---------- itineraries ---------- */
+.itin{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--river2);border-radius:12px;padding:20px 22px;margin:12px 0}
+.itin h4{font-size:1.05rem;font-weight:600;color:var(--river)}
+.itin .meta{font-size:.7rem;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin:2px 0 8px}
+.itin p{font-size:.9rem}
+/* ---------- footer ---------- */
+footer{margin-top:56px;background:var(--river);color:rgba(255,255,255,.72);padding:34px 0 44px;font-size:.85rem}
+footer h4{font-weight:700;color:#fff;margin-bottom:8px}
+footer a{color:var(--goldl)}
+.hidden{display:none!important}
+@media(max-width:640px){.dest summary{padding:13px 14px}.dbody{padding:4px 14px 16px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">A Field Guide for Water-Loving Families · 2026 Edition</div>
+    <h1>The Ultimate Central Oregon <em>Water Adventure</em> Guide</h1>
+    <p class="sub">Every worthwhile river, creek, lake, reservoir, spring, waterfall, and swimming hole within ~90 minutes of Bend — researched and verified for summer 2026, written for families with kids 10–16 who want whole days of wading, swimming, floating, critter-hunting, and exploring.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b id="statCount">—</b>destinations</div>
+      <div class="hstat"><b>6</b>regions</div>
+      <div class="hstat"><b>5–90</b>min from Bend</div>
+      <div class="hstat"><b>2026</b>fees &amp; closures verified</div>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#plan">Plan &amp; Passes</a>
+  <a href="#dest">Destinations</a>
+  <a href="#r-bend">Bend</a>
+  <a href="#r-west">West</a>
+  <a href="#r-nw">Northwest</a>
+  <a href="#r-north">North</a>
+  <a href="#r-east">East</a>
+  <a href="#r-south">South</a>
+  <a href="#table">Summary Table</a>
+  <a href="#best">Best-Of Lists</a>
+  <a href="#itin">Itineraries</a>
+  <a href="#safety">Safety</a>
+</div></nav>
+
+<!-- ================= PLANNING ================= -->
+<section id="plan"><div class="wrap">
+  <h2><span class="no">01</span>Know Before You Go — 2026</h2>
+  <p class="lede">Verified July 2026. Fees changed significantly this year, so read this box before your first trip.</p>
+  <div class="pgrid">
+    <div class="pcard"><h4>Passes &amp; Fees</h4><ul>
+      <li><b>NW Forest Pass:</b> <span class="mono">$5/day · $30/yr</span> — covers most Deschutes &amp; Ochoco NF day-use sites (Cascade Lakes, Metolius, Simax Beach). America the Beautiful ($80) also works.</li>
+      <li><b>Oregon State Parks parking:</b> <span class="mono">$10/day resident · $12 non-res · $60/yr</span> (doubled Jan 1, 2026). Charged at Tumalo, Smith Rock, Cove Palisades, La Pine, Prineville Reservoir.</li>
+      <li><b>Newberry NVM:</b> <span class="mono">$5/vehicle/day</span> or NW Forest Pass — one pass covers Paulina/East Lake, Paulina Falls, Lava Lands.</li>
+    </ul></div>
+    <div class="pcard"><h4>Central Cascades Wilderness Permits</h4>
+      <p>June 15 – Oct 15, 2026: <b>day-use permits required</b> at 19 trailheads including Green Lakes/Fall Creek, Broken Top, Tam McArthur Rim, and hikes beyond Todd Lake. <span class="mono">$1/person on Recreation.gov</span>, released 10 days and 2 days ahead at 7 am. Not needed to visit the drive-up lakes themselves.</p></div>
+    <div class="pcard"><h4>New for 2026: Waterway Access Permit</h4>
+      <p>As of Jan 1, 2026 <b>all non-motorized boats need a permit regardless of length</b> — kayaks, canoes, SUPs, rafts, inflatable kayaks. <span class="mono">$6/wk · $20/yr</span>. Exempt: kids 13 and under, river float tubes, surfboards. Stop at orange boat-inspection stations when carrying any watercraft.</p></div>
+    <div class="pcard"><h4>Seasonal Roads</h4><ul>
+      <li>Cascade Lakes Hwy &amp; Paulina Lake Rd opened <b>May 7, 2026</b> (early); both close with November snow.</li>
+      <li>Three Creek Rd (FS 16) usually drivable late June–July.</li>
+      <li>Tumalo Falls Rd gated Nov–May (bike/walk in).</li>
+      <li>Alder Springs road closed Dec 1 – Mar 31 (deer winter range).</li>
+    </ul></div>
+    <div class="pcard"><h4>Algae (Cyanobacteria) Advisories</h4>
+      <p>Repeat bloomers: <b>Lake Billy Chinook</b> (advisory June 12, 2026, downgraded June 29 — still risky for dogs), <b>Prineville Reservoir, Ochoco Reservoir, Crane Prairie, Wickiup, Odell, Haystack</b>. Check the <a class="ext" href="https://www.oregon.gov/oha/ph/healthyenvironments/recreation/harmfulalgaeblooms/pages/blue-greenalgaeadvisories.aspx">OHA advisories page</a> before swimming July–Oct. When in doubt, stay out; kids and dogs are highest-risk.</p></div>
+    <div class="pcard"><h4>The Bend Float, 2026</h4>
+      <p><b>Park &amp; Float</b> (1000 SW Bradbury Way): free parking, tube rentals, June 13 – Sep 7. <b>Ride the River shuttle:</b> $5 (cash or app), June 17 – Sep 7, SUPs now allowed space-permitting. Float Riverbend Park → Drake Park, ~1.5–2 hrs. Life jackets required for kids 12 &amp; under on any boat/SUP.</p></div>
+    <div class="pcard"><h4>River Flows Cheat Sheet</h4><ul>
+      <li><b>Deschutes below Wickiup/Sunriver:</b> runs HIGH Apr–mid-Oct (irrigation releases) — swifter than it looks.</li>
+      <li><b>Middle Deschutes (below Bend):</b> runs LOW all summer — mellower, warmer.</li>
+      <li><b>Spring-fed &amp; steady year-round:</b> Metolius, Fall River, Spring River — cold (~46–52°F) but crystal clear and predictable.</li>
+    </ul></div>
+    <div class="pcard"><h4>Fire &amp; Closure Status</h4><ul>
+      <li>Deschutes NF Stage 1 fire restrictions May 18 – Nov 30, 2026.</li>
+      <li>2024 Little Lava Fire burn scars visible near Lava Lakes/Wickiup; emergency closures lifted, watch for snags.</li>
+      <li>McKenzie River Trail: partial detour (Lookout Fire); Cedar Creek closure order through 2026 farther west.</li>
+      <li>Walton Lake: ~⅓ mile of shore trail closed (hazard trees); lake open.</li>
+      <li>Live info: <a class="ext" href="https://centraloregonfire.org">centraloregonfire.org</a></li>
+    </ul></div>
+  </div>
+</div></section>
+
+<!-- ================= DESTINATIONS ================= -->
+<section id="dest"><div class="wrap">
+  <h2><span class="no">02</span>The Destinations</h2>
+  <p class="lede">Organized by compass direction from Bend. Click any card to expand full details — water conditions, ratings, wildlife, safety, amenities, and our family verdict. Use the filters to find exactly the kind of day you want.</p>
+</div>
+<div class="filterbar"><div class="wrap filterrow">
+  <input id="q" type="search" placeholder="Search destinations… (e.g. waterfall, sandy, otters)">
+  <div class="tagpills" id="pills"></div>
+  <span class="count" id="shownCount"></span>
+</div></div>
+<div class="wrap" id="cards"></div>
+</section>
+
+<!-- ================= SUMMARY TABLE ================= -->
+<section id="table"><div class="wrap">
+  <h2><span class="no">03</span>Master Summary Table</h2>
+  <p class="lede">Every destination at a glance. Click a column header to sort.</p>
+  <div class="tblwrap"><table id="sumtbl">
+    <thead><tr>
+      <th data-k="name">Destination</th><th data-k="region">Region</th><th data-k="drive">Drive (min)</th>
+      <th data-k="type">Type</th><th data-k="sw">Swim</th><th data-k="wa">Wade</th><th data-k="cr">Creek</th>
+      <th data-k="ov">Overall</th><th data-k="months">Best Months</th>
+    </tr></thead><tbody></tbody>
+  </table></div>
+</section>
+
+<!-- ================= BEST OF ================= -->
+<section id="best"><div class="wrap">
+  <h2><span class="no">04</span>Curated Best-Of Lists</h2>
+  <div class="lists">
+    <div class="list"><h4>Best Family Swimming Spots</h4><ol>
+      <li><b>East Lake</b> — warm pumice-sand shallows in a volcano</li>
+      <li><b>Crescent Lake / Simax Beach</b> — Caribbean-clear sand shelf</li>
+      <li><b>Cultus Lake</b> — warmest big Cascade lake, real beach</li>
+      <li><b>Tumalo State Park</b> — gentlest reach of the Deschutes</li>
+      <li><b>Scout Lake</b> — low-70s water by late July</li>
+      <li><b>Twin Lakes (South)</b> — calm, no motors, milkshakes after</li>
+    </ol></div>
+    <div class="list"><h4>Best Creek Exploration</h4><ol>
+      <li><b>Paulina Creek / McKay Crossing</b> — natural waterslide</li>
+      <li><b>Shevlin Park</b> — 4.5 miles of splashable Tumalo Creek</li>
+      <li><b>Soda Creek</b> — knee-deep meadow riffles below Broken Top</li>
+      <li><b>Fall River</b> — gin-clear channels + headwater springs</li>
+      <li><b>Whychus Creek at Creekside Park</b> — wade, then ice cream</li>
+      <li><b>Lake Creek (Metolius Preserve)</b> — fall kokanee parade</li>
+    </ol></div>
+    <div class="list"><h4>Best Rivers for Wading</h4><ol>
+      <li><b>Tumalo State Park</b> — sandy, slow, kid-calibrated</li>
+      <li><b>Fall River</b> — gin-clear shallows over sand, trout everywhere</li>
+      <li><b>Little Deschutes at Rosland Park</b> — warmest moving water</li>
+      <li><b>Cline Falls</b> — coves and pools for every age</li>
+      <li><b>Big River Day Use</b> — wide sandy margins</li>
+    </ol></div>
+    <div class="list"><h4>Clearest Water</h4><ol>
+      <li><b>Clear Lake</b> — 100+ ft visibility, sunken 3,000-yr-old forest</li>
+      <li><b>Tamolitch Blue Pool</b> — surreal, look-don't-swim</li>
+      <li><b>Metolius River</b> — a river-sized spring</li>
+      <li><b>Devils Lake</b> — glowing turquoise over ash</li>
+      <li><b>Fall River</b> — count the trout from shore</li>
+    </ol></div>
+    <div class="list"><h4>Warmest Water</h4><ol>
+      <li><b>Scout Lake</b> — low-to-mid 70s by late July</li>
+      <li><b>East Lake shallows</b> — geothermally boosted</li>
+      <li><b>Lake Billy Chinook</b> — low 70s surface (check algae!)</li>
+      <li><b>Haystack Reservoir</b> — warm, quiet, underrated</li>
+      <li><b>South Twin Lake</b> — shallow bowl, warms fast</li>
+      <li><b>Paulina & East Lake hot springs</b> — 90–115°F dug pools</li>
+    </ol></div>
+    <div class="list"><h4>Most Scenic Lakes</h4><ol>
+      <li><b>Sparks Lake</b> — THE South Sister reflection</li>
+      <li><b>Three Creek Lake</b> — under Tam McArthur Rim</li>
+      <li><b>Hosmer Lake</b> — emerald channels, mountain backdrop</li>
+      <li><b>Crescent Lake</b> — Diamond Peak over white sand</li>
+      <li><b>Todd Lake</b> — wildflower meadow amphitheater</li>
+    </ol></div>
+    <div class="list"><h4>Hidden Gems</h4><ol>
+      <li><b>Fall River Falls</b> — unmarked turnoff, waterfall, pools</li>
+      <li><b>Head of Jack Creek</b> — a creek born from a hole in the ground</li>
+      <li><b>Borden Beck Preserve</b> — crowd-free Deschutes swimming</li>
+      <li><b>Little Three Creek Lake</b> — hike-in alpine swim</li>
+      <li><b>Blow &amp; Doris Lakes</b> — secret swim payoffs on foot</li>
+      <li><b>Bull Bend</b> — the river loops back to your campsite</li>
+    </ol></div>
+    <div class="list"><h4>Best Waterfalls (Safe Access)</h4><ol>
+      <li><b>Tumalo Falls</b> — 97 ft, viewpoint 100 yards from car</li>
+      <li><b>Sahalie &amp; Koosah Falls</b> — two giants, one 0.8-mi loop</li>
+      <li><b>Paulina Falls</b> — twin 80-ft caldera plunge</li>
+      <li><b>Steelhead Falls</b> — desert canyon + swimming hole</li>
+      <li><b>Chush Falls</b> — 200-ft earn-it hike near Sisters</li>
+      <li><b>Benham / Dillon / Lava Island</b> — thundering trio (spectate only)</li>
+    </ol></div>
+    <div class="list"><h4>Best Wildlife Viewing</h4><ol>
+      <li><b>Hosmer Lake</b> — otters, cranes, eagles from a canoe</li>
+      <li><b>Crane Prairie</b> — osprey nursery in a drowned forest</li>
+      <li><b>Camp Polk Meadow</b> — 180 bird species, spawning steelhead</li>
+      <li><b>Wizard Falls Hatchery</b> — feed giant trout, then wild springs</li>
+      <li><b>Davis Lake</b> — sandhill cranes over a lava dam</li>
+    </ol></div>
+    <div class="list"><h4>Best Picnic Locations</h4><ol>
+      <li><b>La Pine State Park</b> — lawns, river bend, Big Tree</li>
+      <li><b>Suttle Lake</b> — shore tables + lodge milkshakes</li>
+      <li><b>Wizard Falls Hatchery</b> — lawn under giant ponderosas</li>
+      <li><b>Elk Lake Beach</b> — sand, mountains, burger backup</li>
+      <li><b>Drake Park</b> — float take-out + downtown treats</li>
+    </ol></div>
+    <div class="list"><h4>Hot-Day Heroes (95°F in Bend)</h4><ol>
+      <li><b>Sahalie–Koosah canyon</b> — 10–15° cooler in the mist</li>
+      <li><b>Cultus or Elk Lake</b> — jump in, repeat</li>
+      <li><b>The Bend town float</b> — cold river, zero effort</li>
+      <li><b>Metolius corridor</b> — deep shade, 48°F water underfoot</li>
+      <li><b>Three Creek Lake</b> — 6,550 ft of built-in AC</li>
+    </ol></div>
+    <div class="list"><h4>Best Fall Destinations</h4><ol>
+      <li><b>Metolius + Lake Creek</b> — spawning kokanee in scarlet</li>
+      <li><b>Shevlin Park</b> — aspen gold over Tumalo Creek</li>
+      <li><b>Trapper Creek (Odell)</b> — kokanee run viewing</li>
+      <li><b>Smith Rock</b> — perfect temps, wading feet</li>
+      <li><b>Metolius Preserve</b> — golden larch</li>
+    </ol></div>
+    <div class="list"><h4>Best Spring Destinations</h4><ol>
+      <li><b>Steelhead Falls</b> — canyon wildflowers, April–June</li>
+      <li><b>Whychus Canyon Preserve</b> — flowers + full creek</li>
+      <li><b>Alder Springs</b> — opens April 1, ford is lively</li>
+      <li><b>Sahalie &amp; Koosah</b> — snowmelt thunder</li>
+      <li><b>Paulina Lake hot springs</b> — best pools May–July</li>
+    </ol></div>
+    <div class="list"><h4>Best Half-Day Trips</h4><ol>
+      <li><b>Shevlin Park</b> — 10 min away, whole afternoon of creek</li>
+      <li><b>Tumalo SP + Riley Ranch</b> — hike then swim</li>
+      <li><b>Tumalo Falls + Skyliner creek stops</b></li>
+      <li><b>Creekside Park + downtown Sisters</b></li>
+      <li><b>The town float</b> — 2 hrs + lunch</li>
+    </ol></div>
+    <div class="list"><h4>Best Full-Day Adventures</h4><ol>
+      <li><b>Newberry Caldera</b> — hot springs, obsidian, two lakes</li>
+      <li><b>Metolius day</b> — springs, bridge trout, hatchery, trail</li>
+      <li><b>Cascade Lakes hop</b> — Todd → Sparks → Devils → Elk</li>
+      <li><b>Clear Lake + Sahalie/Koosah</b> — rowboat + waterfalls</li>
+      <li><b>Crescent Lake beach day</b> — commit to the sand</li>
+    </ol></div>
+  </div>
+</div></section>
+
+<!-- ================= ITINERARIES ================= -->
+<section id="itin"><div class="wrap">
+  <h2><span class="no">05</span>Suggested Itineraries</h2>
+  <p class="lede">Field-tested combinations. Times assume a relaxed family pace with snack stops.</p>
+  <div class="itin"><h4>1 · The Volcano Water Day (South)</h4><div class="meta">Full day · 55 min drive · Newberry NVM pass</div>
+    <p>Paulina Falls viewpoint (30 min) → Little Crater CG, hike 1.2 mi of lakeshore to <b>Paulina Lake Hot Springs</b>, dig a soaking pool, cold-plunge the lake (2–3 hrs) → picnic → drive to <b>East Lake</b> pumice beach for the warm afternoon swim (2 hrs) → Big Obsidian Flow trail on the way out (45 min). Teens rate this the best single day in the guide.</p></div>
+  <div class="itin"><h4>2 · The Crystal River Day (Northwest)</h4><div class="meta">Full day · 50–60 min · $5 day pass</div>
+    <p><b>Head of the Metolius</b> (20 min wonder-stop) → <b>Camp Sherman Bridge</b> trout-spotting + store ice cream → <b>Wizard Falls Hatchery</b>: feed the fish, picnic on the lawn → walk the <b>West Metolius Trail</b> 1 mile to the gushing springs → optional finish: <b>Suttle Lake</b> swim + lodge milkshake on the drive home.</p></div>
+  <div class="itin"><h4>3 · Cascade Lakes Sampler (West)</h4><div class="meta">Full day · 40–55 min · NW Forest Pass</div>
+    <p><b>Todd Lake</b> morning loop + frog hunt (90 min) → <b>Sparks Lake</b> Ray Atkeson lava trail + photos (1 hr) → <b>Devils Lake</b> turquoise polar-plunge dare (30 min) → afternoon at <b>Elk Lake</b> beach or a <b>Hosmer Lake</b> canoe safari. Pack layers — it's 10° cooler up here.</p></div>
+  <div class="itin"><h4>4 · Waterfall &amp; Rowboat Day (Northwest, Hwy 126)</h4><div class="meta">Full day · 70 min · free–$5</div>
+    <p><b>Sahalie &amp; Koosah Falls</b> 0.8-mi loop in the cool morning mist → drive 5 min to <b>Clear Lake</b>: rent a rowboat and drift over the 3,000-year-old sunken forest → cafe lunch → optional Tamolitch Blue Pool hike (3.7 mi RT) for families with strong hikers — view only, no jumping, ever.</p></div>
+  <div class="itin"><h4>5 · The Lazy Float Day (Bend)</h4><div class="meta">Half day · 10 min · $5 shuttle + rentals</div>
+    <p>Park at <b>Park &amp; Float</b>, rent tubes → put in at <b>Riverbend Park</b> → float to the Whitewater Park: brave kids ride the Passageway Channel, everyone else walks around at McKay Park → continue to <b>Drake Park</b> take-out → shuttle back → burgers in the Old Mill and watch the surfers from the footbridge.</p></div>
+  <div class="itin"><h4>6 · Desert Canyon Adventure (North)</h4><div class="meta">Full day · 40–50 min · start EARLY in summer</div>
+    <p>Morning hike to <b>Steelhead Falls</b> (0.5 mi) — swim the big pool, older kids explore downstream beaches (3 hrs) → picnic → afternoon at <b>Tumalo State Park</b> for easy swimming, or <b>Smith Rock</b> river-trail wade in shoulder season. Rattlesnake talk beforehand; gallons of water.</p></div>
+  <div class="itin"><h4>7 · Waterslide &amp; Big Tree Day (South)</h4><div class="meta">Full day · 40 min · mostly free</div>
+    <p><b>McKay Crossing</b>: hike 1.5 mi up Paulina Creek to the natural rock waterslide (wear old shorts!) + falls swimming hole (3 hrs) → <b>La Pine State Park</b>: swim beach, then the 500-year-old <b>Big Tree</b> → finish wading the warm <b>Little Deschutes at Rosland Park</b>.</p></div>
+  <div class="itin"><h4>8 · The Beach Commitment (South)</h4><div class="meta">Full day · 80 min · $5 pass</div>
+    <p>Drive early to <b>Crescent Lake's Simax Beach</b> — claim sand, swim the endless shallow shelf, build the castle, paddle the protected bay (all day) → detour on the way home: <b>Odell Lake's Trapper Creek</b> in fall for spawning kokanee, or <b>Davis Lake's</b> lava dam scramble in early summer.</p></div>
+  <div class="itin"><h4>9 · Alpine Earn-Your-Swim (West/NW, teens)</h4><div class="meta">Full day · 55–65 min · wilderness permit may apply</div>
+    <p>Drive up FS 16 to <b>Three Creek Lake</b> → hike 1.5–2.5 mi to <b>Little Three Creek Lake</b> for the warmer, emptier swim under Tam McArthur Rim → back to the big lake for a rowboat hour. Alternative: <b>Six Lakes Trail</b> to Blow &amp; Doris Lakes ($1 wilderness permit, book 2–10 days out).</p></div>
+</div></section>
+
+<!-- ================= SAFETY ================= -->
+<section id="safety"><div class="wrap">
+  <h2><span class="no">06</span>Family Water Safety Code</h2>
+  <div class="callout red"><b>The six rules that cover 95% of the risk out here:</b></div>
+  <div class="pgrid">
+    <div class="pcard"><h4>1 · Cold is the hidden hazard</h4><p>Even in August most water here runs 45–65°F. Cold shock — involuntary gasping and instant fatigue — is the region's top drowning factor, not current. Swim parallel to shore, keep sessions short, warm up between dips. Spring-fed waters (Metolius, Fall River, Devils Lake, Blue Pool at 37°F) never warm up.</p></div>
+    <div class="pcard"><h4>2 · Know your take-out</h4><p>The Deschutes alternates flat water with killer falls. Absolute exit points: <b>Drake Park</b> (town float), <b>Wyeth CG</b> (above Pringle Falls), <b>Sunriver takeout / Benham East</b> (above Benham Falls), upstream of the log boom at <b>Dillon Falls</b>. Brief the kids before launching, every time.</p></div>
+    <div class="pcard"><h4>3 · No cliff jumping</h4><p>Deaths and serious injuries recur at <b>Tamolitch Blue Pool</b> (most recently June 2026) and <b>Steelhead Falls</b>. Depths change yearly, rocks move, cold water incapacitates, and rescue is hours away. Make the family rule explicit before you arrive, not at the edge.</p></div>
+    <div class="pcard"><h4>4 · Check algae before reservoir swims</h4><p>July–October, check OHA cyanobacteria advisories for Billy Chinook, Prineville, Ochoco, Crane Prairie, Wickiup, Odell, Haystack. Blooms look like green paint or pea soup. Dogs are most vulnerable.</p></div>
+    <div class="pcard"><h4>5 · Life jackets &amp; the law</h4><p>Required for kids 12 and under on any boat, raft, or SUP, and smart for everyone in moving water. Afternoon wind builds real waves on Elk, Cultus, Crescent, Odell, and Big Lake — paddle mornings, hug the shore.</p></div>
+    <div class="pcard"><h4>6 · Canyon logistics</h4><p>Steelhead Falls, Alder Springs, Scout Camp, Chimney Rock: no cell service, full sun, rattlesnake country. One liter of water per person minimum, water shoes for fords, and tell someone your plan. Everywhere past Mt. Bachelor: assume zero bars.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <h4>About this guide</h4>
+  <p>Researched and verified July 2026 from Forest Service, Oregon State Parks, BLM, ODFW, OHA, Deschutes Land Trust, and local news sources. Conditions change — always check <a href="https://www.fs.usda.gov/r06/deschutes/alerts">Deschutes NF alerts</a>, <a href="https://centraloregonfire.org">centraloregonfire.org</a>, and the <a href="https://www.oregon.gov/oha/ph/healthyenvironments/recreation/harmfulalgaeblooms/pages/blue-greenalgaeadvisories.aspx">OHA algae page</a> before you go. GPS coordinates are approximate (nearest parking/access). Ratings are our family-experience judgment calls for kids 10–16, not official designations. Where sources conflicted (a few fee signs and road dates), we've said so in the card.</p>
+  <p style="margin-top:10px">Made for the Carr family · Four Roots Ranch · Summer 2026 🌲</p>
+</div></footer>
+
+<script>
+const REGIONS={bend:"In & Around Bend",west:"West · Cascade Lakes & Tumalo Creek",nw:"Northwest · Sisters, Metolius & McKenzie",north:"North · Tumalo, Terrebonne & Madras",east:"East · Prineville & the Ochocos",south:"South · Sunriver, Newberry & Crescent"};
+const REGIONMETA={bend:"5–30 min · the everyday spots",west:"30–75 min · alpine lakes & icy creeks",nw:"25–90 min · spring rivers & waterfalls",north:"15–60 min · desert canyons & warm water",east:"40–90 min · reservoirs & trout rivers",south:"25–90 min · hot springs, sand & slides"};
+const RSHORT={bend:"Bend",west:"West",nw:"Northwest",north:"North",east:"East",south:"South"};
+const TAGS={swim:"Swimming",wade:"Wading",creek:"Creek play",waterfall:"Waterfall",beach:"Sandy beach",paddle:"Paddling",fish:"Fishing",hotspring:"Hot springs",hike:"Hike-in",wildlife:"Wildlife",free:"Free",warm:"Warm water"};
+const D=[];
+D.push(
+{id:"riverbend",name:"Riverbend Park",region:"bend",type:"River park & float put-in",drive:8,gps:"44.043,-121.322",elev:"3,630 ft",agency:"Bend Park & Rec",months:"Jun–Sep",crowds:"Very high summer weekends — the busiest float launch in Central Oregon",fees:"Free (park). Use Park & Float lot; street parking is permit-restricted",
+water:"Clear and cold (mid-50s to mid-60s °F in summer); slow-to-moderate current in this flat reach above the whitewater park; gradual sandy-gravel entry, waist-deep near shore.",
+wade:"Good supervised swimming and easy wading at the beach-style entry. This is flat water — the gentlest in-town launch spot.",
+special:"Start of the classic Bend town float; big lawns, sandy entry, the whole summer scene. Tube rentals and the $5 Ride the River shuttle close the loop.",
+wildlife:"Ospreys, ducks, geese, occasional river otters.",
+safety:"Everything launched here drifts toward the Bend Whitewater Park ~1 mile downstream — kids must know to stay river-right for the Passageway Channel or walk around at McKay Park. Life jackets required 12 & under.",
+amen:"Restrooms, lawns, playground nearby, rentals at Park & Float across the river, full cell service, food in the Old Mill.",
+act:"Tubing the town float, swimming, SUP, people-watching, picnics.",
+r:{wa:7,sw:7,cr:3,wi:4,ph:5,re:8,pi:8,sc:6,ad:5,ov:8},worth:"The essential Bend rite of summer",len:"2–4 hours",back:"Every hot week of summer",tags:["swim","wade","paddle","free"],
+n26:"Park & Float open Jun 13–Sep 7; shuttle $5, Jun 17–Sep 7, SUPs now allowed on the shuttle space-permitting."},
+{id:"mckay",name:"McKay Park & Bend Whitewater Park",region:"bend",type:"Engineered whitewater park",drive:8,gps:"44.048,-121.321",elev:"3,625 ft",agency:"Bend Park & Rec",months:"Jun–Sep (surfers year-round)",crowds:"High; the small beach fills fast",fees:"Free",
+water:"Clear, cold, powerful engineered current in two active channels; calm edgewater at the McKay Park beach.",
+wade:"Wade the calm beach edges only. Confident kids can ride the Passageway Channel on tubes; nobody swims the Whitewater Channel.",
+special:"Three channels at the old Colorado Ave dam: a surfing wave train, the floaters' passageway, and a closed habitat channel. Watching surfers from the footbridge is a legitimately great free show.",
+wildlife:"Ospreys, mergansers; the habitat channel supports fish passage.",
+safety:"Serious spot: two deaths in 2022 (a surfer entrapped; a floater in the wrong channel). Floaters stay river-right; unsure kids walk around via the park — portaging is normal here. Bruises common at high water.",
+amen:"Small beach, restrooms, footbridge viewing deck, Old Mill food steps away.",
+act:"Tube the passageway, surf-watching, splash at the beach, photography.",
+r:{wa:5,sw:4,cr:2,wi:3,ph:7,re:6,pi:6,sc:6,ad:8,ov:7},worth:"Yes — even just to watch",len:"1–2 hours",back:"Yes, with clear channel rules",tags:["swim","wade","free"],
+n26:"A ~$15M safety-and-access overhaul is in planning; no closures expected in 2026 (construction is 3–4 years out)."},
+{id:"drake",name:"Drake Park & Mirror Pond",region:"bend",type:"Slow river impoundment",drive:6,gps:"44.060,-121.315",elev:"3,620 ft",agency:"Bend Park & Rec",months:"Jun–Sep",crowds:"High — downtown's living room",fees:"Free; parking tight, use the float shuttle",
+water:"Slow, pond-like, warmer than the river upstream; murky edges over a muddy bottom.",
+wade:"The south-end beach is the float take-out — fine for a splash, not a swim destination.",
+special:"Historic 13-acre lawn under giant ponderosas, the take-out for the town float, downtown treats one block away.",
+wildlife:"Canada geese (abundant), ducks, occasional swans, otters at dawn.",
+safety:"Exit river-right at the marked beach — the century-old Newport Ave dam is downstream. Do not float past the take-out.",
+amen:"Restrooms, huge lawns, playground, downtown food, full cell service.",
+act:"Float take-out, picnics, duck-watching, evening strolls.",
+r:{wa:4,sw:3,cr:2,wi:4,ph:6,re:8,pi:9,sc:6,ad:2,ov:6},worth:"As the float finale, absolutely",len:"1–2 hours",back:"Every float day",tags:["wade","free"]},
+{id:"farewell",name:"Farewell Bend Park",region:"bend",type:"River park on the float route",drive:8,gps:"44.040,-121.318",elev:"3,630 ft",agency:"Bend Park & Rec",months:"Jun–Sep",crowds:"Moderate-high",fees:"Free",
+water:"Clear, slow-to-moderate current with gravel and sand entries.",
+wade:"Several gentle entry points; a popular alternate put-in that shortens the float.",
+special:"Footbridges connect the Old Mill riverwalk loop — bike-and-splash outings work beautifully from here.",
+wildlife:"Ospreys nesting on Old Mill platforms, geese, ducks.",
+safety:"Same rule as Riverbend: everything drifts toward the whitewater park. Brief the kids.",
+amen:"Restrooms, playground, paved trails, Old Mill shops and food adjacent.",
+act:"Shorter float put-in, riverwalk biking, swimming, picnics.",
+r:{wa:6,sw:6,cr:3,wi:4,ph:5,re:8,pi:8,sc:6,ad:4,ov:7},worth:"Great everyday option",len:"1–3 hours",back:"Constantly",tags:["swim","wade","paddle","free"]},
+{id:"firststreet",name:"First Street Rapids Park",region:"bend",type:"Natural rapid & river access",drive:8,gps:"44.076,-121.320",elev:"3,600 ft",agency:"Bend Park & Rec",months:"Jul–Sep",crowds:"Low-moderate; a locals' spot",fees:"Free",
+water:"Clear, fast riffle over cobble and bedrock; shallow edges, cold; a long-time slalom kayak training reach.",
+wade:"Edge wading only — current is too fast mid-channel. Great rock-hopping along the margins at low water.",
+special:"Pedestrian bridge directly over the rapid; 'Jason's Wave' draws kayakers, SUP surfers, and boogie boarders you can watch from 20 feet away. Deschutes River Trail links Pioneer Park to Sawyer Park.",
+wildlife:"River otters, beavers, bald eagles, ospreys, occasionally trumpeter swans.",
+safety:"Swift current; this is NOT on the town float route. Keep tubes out.",
+amen:"Minimal: small parking, seasonal portable toilet, good cell service.",
+act:"Kayaker-watching, margin wading, canyon trail walks, birding.",
+r:{wa:5,sw:2,cr:5,wi:7,ph:6,re:6,pi:5,sc:6,ad:5,ov:6},worth:"Yes for an hour or two",len:"1–2 hours",back:"Yes — good low-key stop",tags:["wade","wildlife","free"]},
+{id:"sawyer",name:"Sawyer Park",region:"bend",type:"Natural-area river park",drive:10,gps:"44.083,-121.323",elev:"3,590 ft",agency:"Bend Park & Rec",months:"Year-round; water play Jul–Sep",crowds:"Low-moderate",fees:"Free",
+water:"Clear, moderate current over a rocky bottom with calmer side pockets.",
+wade:"Wading and rock-hopping rather than swimming; kids explore pocket water below the footbridge.",
+special:"Junipers-and-basalt canyon feel inside city limits; footbridge spans the river; trail continues into Archie Briggs Canyon.",
+wildlife:"One of Bend's best birding parks; otters, mule deer, kingfishers.",
+safety:"Swift water below the footbridge; slippery rocks.",
+amen:"Restroom, parking lot, river trail, cell service.",
+act:"Wildlife walks, fishing, rock-skipping, creek-style exploring.",
+r:{wa:6,sw:2,cr:6,wi:8,ph:6,re:7,pi:6,sc:7,ad:4,ov:6},worth:"Lovely close-in nature fix",len:"1–3 hours",back:"Yes",tags:["wade","wildlife","fish","free"]},
+{id:"pioneer",name:"Pioneer Park",region:"bend",type:"Riverside lawn park",drive:6,gps:"44.066,-121.315",elev:"3,615 ft",agency:"Bend Park & Rec",months:"Jun–Sep",crowds:"Low",fees:"Free",
+water:"Slow, pond-like water below Mirror Pond; silty, muddy edges.",
+wade:"Marginal — treat it as a picnic-and-ducks stop, and keep kids out of the water near the dam reach.",
+special:"Historic shaded lawns and rose garden; the river trail connects to First Street Rapids in ten minutes.",
+wildlife:"Waterfowl, songbirds.",
+safety:"Near the Newport dam reach — no water entry nearby.",
+amen:"Restrooms, picnic shelters, shade, cell service.",
+act:"Picnic, trail walk to the rapids, nature journaling.",
+r:{wa:2,sw:1,cr:2,wi:4,ph:4,re:8,pi:8,sc:5,ad:1,ov:4},worth:"As a picnic base, yes",len:"1 hour",back:"For picnics",tags:["free"]},
+{id:"shevlin",name:"Shevlin Park (Tumalo Creek)",region:"bend",type:"Forest creek through a 1,000-acre park",drive:12,gps:"44.075,-121.380",elev:"3,700–3,900 ft",agency:"Bend Park & Rec",months:"Jul–Sep for creek play; park year-round",crowds:"High weekends, but 4.5 miles of creek disperses everyone",fees:"Free — no pass needed",
+water:"Clear and cold (50s °F summer); moderate current easing late summer; knee-deep riffles with some waist-deep pools over gravel and cobble.",
+wade:"The best casual creek-wading in Bend. Fremont Meadow and the footbridges are the classic splash zones; pools are deep enough for a proper dunk by August.",
+special:"Old-growth ponderosas, aspen groves, a covered bridge, a 6-mile loop trail, and glowing fall color. The everyday spot you'll use ten times a summer.",
+wildlife:"Deer, occasional otters, woodpeckers, trout fry in the shallows, dragonflies.",
+safety:"Spring runoff is pushy — save creek play for July onward. Some steep canyon-edge trail sections.",
+amen:"Multiple lots, restrooms, picnic shelters, shade everywhere, good cell service.",
+act:"Creek wading, critter hunting, loop hikes, mountain biking, fall-color picnics.",
+r:{wa:9,sw:4,cr:10,wi:6,ph:7,re:8,pi:8,sc:7,ad:6,ov:9},worth:"10 minutes away — it's the default",len:"Half day",back:"Weekly",tags:["wade","creek","wildlife","free"]},
+{id:"rileyranch",name:"Riley Ranch Nature Reserve",region:"bend",type:"Canyon nature reserve, Middle Deschutes",drive:15,gps:"44.115,-121.335",elev:"river ~3,250 ft",agency:"Bend Park & Rec",months:"Apr–Jun, Sep–Oct; summer mornings",crowds:"Low-moderate",fees:"Free",
+water:"Clear, swifter canyon water over rock.",
+wade:"Limited by design — river access only at designated points on the 1.25-mile Canyon Loop; banks are protected habitat. Toes-in exploring, not swimming.",
+special:"Basalt canyon and lava flows minutes from town; trail connects to Tumalo State Park for a hike-then-swim combo.",
+wildlife:"Mule deer winter range, golden eagles, canyon wrens, otters.",
+safety:"Rim cliffs; swift current. No dogs (even leashed), no bikes.",
+amen:"Restroom, parking; open 5 am–10 pm.",
+act:"Canyon Loop hike to the river, birding, photography, then swim at Tumalo SP.",
+r:{wa:3,sw:1,cr:4,wi:8,ph:7,re:6,pi:5,sc:8,ad:5,ov:6},worth:"Best paired with Tumalo SP",len:"2–3 hours",back:"Spring and fall, yes",tags:["hike","wildlife","free"]},
+{id:"lavaisland",name:"Lava Island Falls",region:"bend",type:"River rapid beside a lava flow",drive:20,gps:"43.995,-121.383",elev:"3,960 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Moderate",fees:"$5/day or NW Forest Pass",
+water:"Braided channels around Lava Island: calm eddies above, class IV+ whitewater in the falls.",
+wade:"Ankle wading in the calm side channels near the trailhead only — no swimming anywhere near the drop.",
+special:"First stop on the Road 41 corridor; lava flow scenery and side channels kids love to trace on foot.",
+wildlife:"Ospreys, eagles, deer, dippers.",
+safety:"Unrunnable whitewater immediately downstream; keep every floating object out of the water here.",
+amen:"Vault toilet, small lot, Deschutes River Trail access. Dogs leashed May 15–Sep 15.",
+act:"Riverside walking, side-channel exploring, photography.",
+r:{wa:4,sw:1,cr:6,wi:5,ph:7,re:5,pi:5,sc:7,ad:5,ov:6},worth:"As part of a Road 41 tour",len:"1–2 hours",back:"With the trail combo",tags:["creek","waterfall","hike"]},
+{id:"bigeddy",name:"Big Eddy",region:"bend",type:"Class III rapid & raft run",drive:22,gps:"43.982,-121.398",elev:"4,000 ft",agency:"Deschutes NF",months:"May–Sep",crowds:"Moderate; commercial rafts midday",fees:"$5/day or NW Forest Pass",
+water:"Fast green water through a short basalt gorge; flat water above.",
+wade:"None at the rapid; entry spots on the flat water upstream.",
+special:"The 'Big Eddy Thriller' commercial raft trips run this reach (~3 hrs, kid-friendly) — the classic first whitewater experience. Rock ledges make a natural grandstand.",
+wildlife:"Ospreys, mergansers.",
+safety:"Strong hydraulics — spectate from the ledges, well back.",
+amen:"Small lot, vault toilet nearby, river trail.",
+act:"Book a family raft trip, or picnic and watch the rafts hit the wave.",
+r:{wa:2,sw:1,cr:3,wi:4,ph:7,re:5,pi:5,sc:7,ad:9,ov:6},worth:"Yes — do the raft trip once",len:"1 hr watching / 3 hr rafting",back:"For the raft trip",tags:["hike","paddle"]},
+{id:"dillon",name:"Dillon Falls",region:"bend",type:"Class V cascade into a basalt gorge",drive:25,gps:"43.965,-121.410",elev:"4,050 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Moderate-high",fees:"$5/day or NW Forest Pass",
+water:"Wide, calm, canoe-friendly flat water above; violent whitewater in the gorge below.",
+wade:"Only well upstream of the log boom and warning signs.",
+special:"A dramatic gorge overlook is a short walk from the lot; the flat water above is one of the best easy family paddles near town (launch at Aspen or Slough day use).",
+wildlife:"Elk sometimes graze Ryan Ranch meadow; otters, eagles.",
+safety:"Paddlers have died missing the take-out — heed the boom, absolute no-entry below the falls sign.",
+amen:"Vault toilet, canoe/kayak launch, picnic tables.",
+act:"Flat-water canoeing, gorge overlook walk, photography.",
+r:{wa:3,sw:1,cr:4,wi:6,ph:8,re:6,pi:6,sc:8,ad:6,ov:7},worth:"Yes — overlook + paddle combo",len:"2–4 hours",back:"Yes",tags:["paddle","waterfall","hike","wildlife"]},
+{id:"benham",name:"Benham Falls",region:"bend",type:"Largest rapid on the upper Deschutes",drive:25,gps:"43.940,-121.412",elev:"4,140 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"High — one of Oregon's most-visited NF sites",fees:"$5/day or NW Forest Pass",
+water:"Broad, smooth flat water and a picnic meadow above; a thundering half-mile cascade below.",
+wade:"Right at the bank in the flat reach near the footbridge only — the smooth water gathers speed deceptively.",
+special:"Historic logging-railroad trail, a big footbridge over the river, and an overlook platform above the roaring cascade. East-side access ties into Lava Lands.",
+wildlife:"Ospreys, eagles, deer.",
+safety:"The glassy water above accelerates into the falls — keep floats and swimmers well upstream of the bridge.",
+amen:"Vault toilets both sides, picnic tables (west), bike trail from Sunriver.",
+act:"Waterfall overlook walk, bridge photos, bike rides, picnicking.",
+r:{wa:3,sw:1,cr:3,wi:5,ph:8,re:6,pi:7,sc:8,ad:5,ov:7},worth:"Yes — the classic thunder stop",len:"1–2 hours",back:"With visitors, always",tags:["waterfall","hike"]}
+);
+D.push(
+{id:"tumalofalls",name:"Tumalo Falls",region:"west",type:"97-ft waterfall on Tumalo Creek",drive:30,gps:"44.033,-121.566",elev:"~5,000 ft",agency:"Deschutes NF",months:"May–Oct (road gated Nov–May)",crowds:"Very high; the small lot fills by mid-morning all summer",fees:"$5/day or NW Forest Pass (May–Sep)",
+water:"Icy, clear creek water (40s–50s °F); strong current above and below the falls; cobble bottom.",
+wade:"Wading only in calm braids well downstream — never near the brink. The falls are for eyes, the creek downstream for feet.",
+special:"The main viewpoint is 100 yards from the car; the upper viewpoint 0.25 mi; Double Falls and more cascades wait 1–2 miles up the North Fork trail. In shoulder season, bike the gated road in from Skyliner — a beloved local tradition.",
+wildlife:"American dippers bobbing in the spray, deer, grouse.",
+safety:"Unfenced cliff edges upstream of the main viewpoint; cold fast water; hold the line with adventurous teens near the brink. 27-ft vehicle limit on the gravel road.",
+amen:"Small lot, vault toilets, picnic tables; weak/no cell service.",
+act:"Waterfall viewing, hike to Double Falls, creekside picnic, spring bike-in.",
+r:{wa:4,sw:1,cr:6,wi:4,ph:10,re:6,pi:6,sc:9,ad:6,ov:8},worth:"Iconic for a reason",len:"2–3 hours",back:"Yes, especially by bike",tags:["waterfall","creek","hike"]},
+{id:"skyliner",name:"Skyliner / Tumalo Creek Trail",region:"west",type:"Creek corridor & trailhead",drive:20,gps:"44.03,-121.45",elev:"~4,200 ft",agency:"Deschutes NF",months:"Jun–Oct",crowds:"Moderate — far quieter than the falls lot",fees:"Free in summer (sno-park permit winter only); carry a pass in case",
+water:"Clear, cold, lively in early summer, mellow riffles and small pools by August over gravel.",
+wade:"Good creek wading along the Tumalo Creek Trail, which parallels the water 3 miles up to the falls; several user paths reach gravel bars.",
+special:"Paved-road access year-round; when the falls road is gated, this is the launch point for the walk/bike pilgrimage. Connects to Bend's mountain-bike network.",
+wildlife:"Deer, songbirds, trout.",
+safety:"Cold swift water in June; shared trail with mountain bikes.",
+amen:"Trailhead parking, vault toilet at the sno-park, partial cell service.",
+act:"Bike or hike toward the falls with creek stops, wading, trail running.",
+r:{wa:7,sw:2,cr:8,wi:5,ph:6,re:7,pi:6,sc:7,ad:6,ov:7},worth:"The smart alternative to the falls lot",len:"2–4 hours",back:"Yes",tags:["creek","wade","hike","free"]},
+{id:"todd",name:"Todd Lake",region:"west",type:"Walk-in alpine lake (~45 acres)",drive:40,gps:"44.028,-121.684",elev:"6,150 ft",agency:"Deschutes NF",months:"Jul–early Oct",crowds:"Moderate; small lot fills on weekends",fees:"$5/day or NW Forest Pass; wilderness permit only if hiking beyond",
+water:"Clear and cold (upper 50s–low 60s °F late summer); no current; gently shelving grassy-gravel bottom; blue-green color.",
+wade:"Good wading from the meadow shoreline; brisk swims for hardy kids. The lake is a 5–10 minute walk from parking, which filters the crowds.",
+special:"Postcard Broken Top views over wildflower meadows (peak July–Aug), a flat 1.7-mile family loop trail, and the best frog-spotting in the Cascades.",
+wildlife:"Cascades frogs (sensitive species — look, don't handle), ducks, deer, osprey.",
+safety:"Cold water, lingering snowbanks into July; mosquito repellent is non-negotiable June–July.",
+amen:"Small lot, vault toilet, walk-in campsites; no water, no cell service.",
+act:"Loop hike, wading, frog safari, wildflower photography, picnic.",
+r:{wa:8,sw:5,cr:5,wi:8,ph:9,re:8,pi:8,sc:10,ad:6,ov:8},worth:"One of the best easy alpine days anywhere",len:"Half day",back:"Every July",tags:["wade","swim","hike","wildlife"]},
+{id:"sparks",name:"Sparks Lake",region:"west",type:"Shallow natural lake (~250–400 acres)",drive:42,gps:"44.01,-121.74",elev:"5,428 ft",agency:"Deschutes NF",months:"Jun–Sep (level drops late summer)",crowds:"High at golden hour (photographers) and midday weekends; big enough to absorb it",fees:"$5/day or NW Forest Pass",
+water:"Clear, cool (60s °F shallows late summer); mostly under 10 ft deep; mucky volcanic-sand bottom; blue with marshy green edges.",
+wade:"Wadeable in spots but soft-bottomed — this is a paddling lake, not a swim lake.",
+special:"THE iconic South Sister/Broken Top reflection. Paddle into lava channels along the southeast shore — gliding a canoe between lava walls is unforgettable. The Ray Atkeson Memorial Trail (2.3-mi paved-and-lava loop) starts at the day use area. Fly-fishing only; 10 mph boat limit keeps it calm.",
+wildlife:"Osprey, bald eagles, dawn elk and deer, occasional otters.",
+safety:"Afternoon wind chop for paddlers; sharp lava at the shoreline; hidden lava shelves; slow washboard access road.",
+amen:"Gravel lot, vault toilets, small ramp; Soda Creek CG at the junction; no water, no cell service.",
+act:"Canoe/SUP the lava channels, Atkeson loop walk, sunrise photography, fly fishing.",
+r:{wa:4,sw:3,cr:5,wi:7,ph:10,re:7,pi:6,sc:10,ad:8,ov:8},worth:"For the paddle and the view — emphatically",len:"Half day",back:"Yes, with a canoe",tags:["paddle","fish","wildlife","hike"]},
+{id:"sodacreek",name:"Soda Creek",region:"west",type:"Clear meadow creek",drive:40,gps:"44.026,-121.726",elev:"~5,400 ft",agency:"Deschutes NF",months:"Jul–Sep (swift snowmelt in June)",crowds:"Low — most people drive right past",fees:"Free at the highway crossing",
+water:"Very clear and cold (45–55 °F); moderate current easing to gentle by August; shin-to-knee deep over gravel and cobble.",
+wade:"Wading only — and it's ideal creek-exploring water once flows drop mid-summer. A textbook 'walk up the creek bed' destination.",
+special:"Pretty meadow setting under Broken Top; the Soda Creek Trail follows it upstream; the campground sits right at the crossing.",
+wildlife:"Trout fry in the shallows, dippers, deer, elk at dawn.",
+safety:"Swift and cold during June snowmelt — wait for July with younger kids.",
+amen:"Soda Creek CG (vault toilet, tables, no water); no cell service.",
+act:"Creek wading, aquatic-bug hunting, meadow walks, nature journaling.",
+r:{wa:8,sw:1,cr:9,wi:6,ph:7,re:8,pi:7,sc:8,ad:6,ov:7},worth:"A quiet gem hiding in plain sight",len:"1–3 hours",back:"Yes",tags:["creek","wade","free","wildlife"]},
+{id:"fallcreek",name:"Fall Creek (Green Lakes Trail)",region:"west",type:"Waterfall creek, Three Sisters Wilderness",drive:43,gps:"44.032,-121.737",elev:"5,450 ft",agency:"Deschutes NF",months:"Jul–Oct",crowds:"Very high — lot full by 8–9 am in summer",fees:"$5/pass + Central Cascades day-use permit ($1/person, Recreation.gov) Jun 15–Oct 15",
+water:"Crystal clear and very cold (40s–low 50s °F, glacier-fed); strong current in the cascades with calm pools between; white-and-teal over bedrock.",
+wade:"Ankle wading in flat sections only — this is a waterfall-hike creek, not a swimming creek.",
+special:"Near-continuous waterfalls line the first two miles of trail; the first falls is under ten minutes from the car. Go as far as legs allow — Green Lakes itself is 4.5 miles.",
+wildlife:"Dippers, pikas squeaking in the lava, deer.",
+safety:"Slick rock at falls edges; keep kids back from cascade lips. Book the permit 2 or 10 days ahead.",
+amen:"Large paved lot, vault toilets; no water, no cell service.",
+act:"Waterfall hiking, photography, footbridge wading, alpine scenery.",
+r:{wa:3,sw:1,cr:6,wi:5,ph:9,re:5,pi:5,sc:10,ad:8,ov:8},worth:"Yes — plan ahead for the permit",len:"Half–full day",back:"Yes",tags:["waterfall","hike","creek"]},
+{id:"devils",name:"Devils Lake",region:"west",type:"Turquoise spring-fed lake",drive:45,gps:"43.99,-121.76",elev:"5,446 ft",agency:"Deschutes NF",months:"Jul–Sep",crowds:"High (doubles as the South Sister climbers' lot)",fees:"$5/day or NW Forest Pass",
+water:"Exceptionally clear over pale volcanic ash — hence the unreal aqua glow. Average depth ~3 ft, essentially no current, and VERY cold (spring-fed 40s–50s °F even in August).",
+wade:"Excellent short wades and legendary polar-plunge dares for teens; too cold for real swims. Possibly the most photogenic place you will ever stand knee-deep.",
+special:"A lava-formed lake that looks Photoshopped; easy shoreline stroll; free walk-in campground.",
+wildlife:"Brook trout visible against the white bottom, gray jays, chipmunks.",
+safety:"Cold-shock is the real hazard; the highway runs close to shore — watch kids near the road.",
+amen:"Paved lot, vault toilets, walk-in campsites; no cell service.",
+act:"The famous knee-deep photo, plunge dares, picnic, watching climbers set off.",
+r:{wa:8,sw:3,cr:3,wi:5,ph:10,re:7,pi:6,sc:9,ad:5,ov:7},worth:"15 unforgettable minutes minimum",len:"1–2 hours",back:"Every Cascade Lakes trip",tags:["wade","swim"]},
+{id:"elk",name:"Elk Lake",region:"west",type:"390-acre lake with beaches & resort",drive:50,gps:"43.976,-121.808",elev:"4,884 ft",agency:"Deschutes NF / Elk Lake Resort",months:"Jun–Sep",crowds:"High summer weekends — the corridor's social hub",fees:"$5/day or NW Forest Pass at FS day-use areas",
+water:"Clear blue; warms better than its neighbors (surface mid-60s °F possible in August); sandy-gravel entries at the beaches, moderate drop-off beyond.",
+wade:"One of the corridor's two best swim lakes. Sunset View and the Beach day-use areas have gentle sandy entries; Little Fawn beach is the calmest for younger swimmers.",
+special:"Real sandy beaches, reliable afternoon sailing breeze, a resort with SUP/kayak/pedal-boat rentals and a burger deck, and Bachelor-to-South-Sister views.",
+wildlife:"Osprey, eagles, kokanee and brook trout.",
+safety:"Afternoon wind builds chop fast for young paddlers; boat traffic near the marina; cold below the warm surface layer.",
+amen:"Multiple day-use areas with toilets and tables, boat launches, resort store/restaurant, several campgrounds; essentially no cell service.",
+act:"Beach day, rentals, swimming, sailing-watching, lodge dinner.",
+r:{wa:8,sw:8,cr:3,wi:5,ph:8,re:9,pi:8,sc:9,ad:6,ov:9},worth:"The full-service alpine beach day",len:"Full day",back:"Multiple times a summer",tags:["swim","beach","paddle","wade"]},
+{id:"hosmer",name:"Hosmer Lake",region:"west",type:"Channel-braided lake, electric motors only",drive:55,gps:"43.96,-121.79",elev:"4,960 ft",agency:"Deschutes NF",months:"Jun–Sep; dawn glass is magic",crowds:"Moderate — paddlers and fly anglers",fees:"$5/day or NW Forest Pass",
+water:"Extremely clear over aquatic grass beds; cool (50s–60s °F); a few feet deep almost everywhere; emerald-and-blue.",
+wade:"Poor for swimming (mucky, weedy, and a revered fishery) — this is THE paddle destination. Do not stand in the bottom.",
+special:"Canoe through winding reed channels between two lake lobes, watching huge trout cruise beneath the boat. Fly-fishing-only, catch-and-release. Bachelor and Broken Top stand over the reeds.",
+wildlife:"The corridor's best from a boat: otters, sandhill cranes, eagles, osprey, herons, muskrats, visible trophy trout.",
+safety:"Minimal — afternoon wind; keep the canoe near shore lines with new paddlers.",
+amen:"Launch, vault toilets, two small campgrounds; no water, no cell service.",
+act:"The single best family canoe/kayak wildlife float in the region. Bring binoculars.",
+r:{wa:2,sw:2,cr:4,wi:10,ph:9,re:9,pi:6,sc:9,ad:7,ov:8},worth:"With a boat, absolutely",len:"3–5 hours",back:"Every year",tags:["paddle","wildlife","fish"]},
+{id:"lava",name:"Lava Lake",region:"west",type:"Spring-fed lake (~340 acres) with resort",drive:52,gps:"43.916,-121.766",elev:"4,744 ft",agency:"Deschutes NF / Lava Lake Resort",months:"May–Sep",crowds:"Moderate; mostly anglers",fees:"$5/day or NW Forest Pass",
+water:"Clear, cool (upper 50s–60s °F late summer); gradual gravel-silt shoreline; deep blue; max ~30 ft.",
+wade:"Wadeable near the launch; swimming plays second fiddle to fishing here.",
+special:"Big Broken Top–South Sister–Bachelor panorama, a rustic resort with boat rentals, gas, and a store — the practical basecamp of the south corridor.",
+wildlife:"Osprey, eagles, deer; a strong stocked-trout fishery.",
+safety:"Boat traffic (10 mph limit), afternoon wind; burn scar visible to the south.",
+amen:"Launch, 43-site campground, resort store, showers, drinking water in season; no cell service.",
+act:"Rent a fishing boat, paddle, shoreline picnic, camp-and-fish weekend.",
+r:{wa:5,sw:4,cr:3,wi:6,ph:8,re:8,pi:7,sc:9,ad:5,ov:7},worth:"Anglers' pick of the corridor",len:"Half–full day",back:"For the fishing, yes",tags:["fish","paddle","wade"]},
+{id:"littlelava",name:"Little Lava Lake",region:"west",type:"Headwaters of the Deschutes River",drive:58,gps:"43.905,-121.774",elev:"4,750 ft",agency:"Deschutes NF",months:"Jun–Sep",crowds:"Low-moderate — far quieter than its neighbor",fees:"$5/day or NW Forest Pass",
+water:"Clear; shallows reach the 60s °F late summer; gentle outlet current where the Deschutes is born; shallow gravel-sand margins.",
+wade:"Good gentle wading — and the kids can literally stand in the first riffle of the Deschutes River. A great 'we stood at the source' moment.",
+special:"The official Deschutes headwaters. Paddling from the lake down the slow infant river toward Crane Prairie is a classic mellow float (shuttle required).",
+wildlife:"Otters, ospreys, elk in the meadows, trout.",
+safety:"Mild. The 2024 Little Lava Fire burned southeast of here — watch for hazard snags off-trail and check NF alerts before floating downstream.",
+amen:"Small campground, launch, vault toilet; no cell service.",
+act:"Headwaters photo, wading, canoeing the upper Deschutes channel.",
+r:{wa:7,sw:5,cr:6,wi:7,ph:8,re:9,pi:7,sc:8,ad:6,ov:7},worth:"For the story alone",len:"2–4 hours",back:"Yes",tags:["wade","paddle","wildlife"],
+n26:"Burn scars from the 2024 Little Lava Fire visible; closures lifted but snag hazards persist along the upper river corridor."},
+{id:"cultus",name:"Cultus Lake",region:"west",type:"Deep natural lake (~790 acres) with sand beach",drive:65,gps:"43.83,-121.85",elev:"4,668 ft",agency:"Deschutes NF / Cultus Lake Resort",months:"Jul–Aug for swimming",crowds:"High — the motorboat and waterski lake",fees:"$5/day or NW Forest Pass",
+water:"Clear blue; the shallow beach shelf reaches the 60s–low 70s °F by midsummer — the warmest big water in the corridor — then drops off for real.",
+wade:"The best swimming beach on the Cascade Lakes Highway: a 460-ft sand beach at the day-use area next to the resort, with a long gradual entry.",
+special:"Sand between your toes at 4,700 ft; a resort with cafe, cabins, and boat rentals; boat-in campsites at the wild west end.",
+wildlife:"Osprey, eagles, big lake trout in the depths.",
+safety:"BOAT TRAFFIC is the main hazard — keep swimmers inside the designated area. Afternoon west wind builds genuine waves; deep drop-off beyond the shelf.",
+amen:"Day-use beach with restrooms and tables, launch, 55-site campground, resort cafe/store; no cell service.",
+act:"Full beach day, swimming, tubing/skiing with a boat, morning paddles west.",
+r:{wa:8,sw:9,cr:2,wi:4,ph:7,re:8,pi:8,sc:8,ad:7,ov:8},worth:"The corridor's true beach day",len:"Full day",back:"Hot-week regular",tags:["swim","beach","wade","warm","paddle"]},
+{id:"littlecultus",name:"Little Cultus Lake (& Deer Lake)",region:"west",type:"Quiet lake (~175 acres), 10 mph limit",drive:75,gps:"43.81,-121.86",elev:"4,790 ft",agency:"Deschutes NF",months:"Jul–Sep",crowds:"Low — Cultus without the wake boats",fees:"None posted historically; carry a pass, verify signage",
+water:"Clear, cool (60s °F shallows late summer); gravel-sand shallows with a gradual entry.",
+wade:"Very good low-key swimming and wading in kid-friendly shallows; beginner paddling in quiet coves.",
+special:"The family-secret sibling. Tiny Deer Lake just west is even warmer and shallower — a locals' kid-swim classic worth the rough gravel.",
+wildlife:"Deer, osprey, brook and rainbow trout.",
+safety:"Mild; washboard gravel access; you're far from help, so supervise accordingly.",
+amen:"Small campground, vault toilets, gravel launch; no water, no cell service.",
+act:"Beginner canoe/SUP, swimming, quiet camping, hammock time.",
+r:{wa:8,sw:7,cr:3,wi:5,ph:6,re:9,pi:7,sc:7,ad:5,ov:7},worth:"When you want the lake to yourselves",len:"Half–full day",back:"Yes",tags:["swim","wade","paddle","warm"]},
+{id:"crane",name:"Crane Prairie Reservoir",region:"west",type:"Shallow reservoir & osprey nursery",drive:65,gps:"43.79,-121.78",elev:"4,445 ft",agency:"Deschutes NF / Bureau of Reclamation",months:"May–Oct; midsummer for families",crowds:"Moderate; primarily anglers",fees:"$5/day or NW Forest Pass at launches",
+water:"Slightly tannic green; warm for the region (60s–70 °F surface midsummer); mucky-silty bottom studded with famous standing dead snags; avg depth ~11 ft.",
+wade:"Poor swimming (muck, snags, algae risk) — come for the wildlife and the fishing, wade only at gravelly spots.",
+special:"A drowned forest full of osprey nests (a designated osprey management area), trophy 'cranebow' rainbows, and canoe routes up the river arms. Dawn here is a wildlife documentary.",
+wildlife:"The region's best bird show: nesting osprey colonies, bald eagles, sandhill cranes, river otters, dawn elk.",
+safety:"Recurring blue-green algae advisories in hot spells — check OHA first. Submerged snags for boats; afternoon wind.",
+amen:"Multiple launches, campgrounds, resort with store; spotty-to-no cell service.",
+act:"Osprey-watching by canoe, fishing, dawn wildlife drives, photography.",
+r:{wa:3,sw:2,cr:4,wi:10,ph:8,re:7,pi:6,sc:8,ad:6,ov:7},worth:"For wildlife families, a pilgrimage",len:"Half day (start early)",back:"Every June",tags:["wildlife","fish","paddle"],
+n26:"88% full as of July 2026 (good water year). Check OHA algae advisories before contact."},
+{id:"blowdoris",name:"Blow & Doris Lakes (Six Lakes Trail)",region:"west",type:"Hike-in wilderness swimming lakes",drive:55,gps:"43.947,-121.792",elev:"~5,000 ft trailhead",agency:"Deschutes NF, Three Sisters Wilderness",months:"Jul–Sep",crowds:"Low",fees:"$5/pass + Central Cascades day-use permit ($1) Jun 15–Oct 15",
+water:"Clear, cold, quiet forest lakes: Blow (1 mi in) is easy; Doris (2.5 mi) is deep, blue, with rock ledges and gravel entries.",
+wade:"Doris is one of the corridor's best secret swim payoffs for kids who can hike — ledgy entries into genuinely deep clear water.",
+special:"Earned solitude 30 minutes off the busiest highway in Central Oregon. The 'we had a wilderness lake to ourselves' day.",
+wildlife:"Trout, gray jays, deer; mosquitoes thick through July.",
+safety:"Cold water; no facilities beyond a trailhead toilet; carry layers and a map.",
+amen:"Trailhead vault toilet only. No cell service.",
+act:"Hike-to-swim, fishing, wilderness picnic, teen adventure day.",
+r:{wa:6,sw:8,cr:3,wi:6,ph:7,re:9,pi:6,sc:8,ad:9,ov:8},worth:"Best effort-to-solitude ratio around",len:"Half–full day",back:"Yes",tags:["hike","swim","fish"]}
+);
+D.push(
+{id:"metheads",name:"Head of the Metolius",region:"nw",type:"River springs / observation site",drive:52,gps:"44.434,-121.632",elev:"~3,000 ft",agency:"Deschutes NF",months:"Year-round; easiest May–Oct",crowds:"Moderate midday; rarely feels packed",fees:"Carry a $5 pass / NW Forest Pass",
+water:"A full-size river emerging from the ground at ~50,000 gallons a minute, gin-clear and 46–48 °F forever. Viewing is from a fenced overlook — no wading here.",
+wade:"Not suitable (protected source area). This is the ten-minute geology-wonder stop that anchors a Metolius day.",
+special:"One of Oregon's great natural oddities: a river born fully formed at the base of Black Butte, with Mt. Jefferson framed above it. Paved 1/8-mile accessible path.",
+wildlife:"Songbirds, chipmunks, dippers on the young river.",
+safety:"Minimal — keep kids on the path.",
+amen:"Paved parking, vault toilet, interpretive signs; no cell service.",
+act:"The wonder-stop, photos, geology lesson in real time.",
+r:{wa:1,sw:1,cr:2,wi:4,ph:8,re:6,pi:5,sc:9,ad:2,ov:7},worth:"Yes — 15 minutes of genuine awe",len:"20–30 min",back:"Start of every Metolius day",tags:["hike"]},
+{id:"campsherman",name:"Camp Sherman Bridge",region:"nw",type:"Spring-fed river & fish-viewing bridge",drive:50,gps:"44.465,-121.639",elev:"2,950 ft",agency:"Deschutes NF (store private)",months:"Year-round; Sep–Oct for kokanee",crowds:"Light-moderate",fees:"Free at the bridge",
+water:"Extremely clear, 46–48 °F constant, steady moderate current, 2–4 ft near the banks over bright gravel — blue-green like bottled glacier.",
+wade:"Poor for swimming (cold, steady current, and this reach is a de facto fish sanctuary). Kids dangle feet from the bank downstream and count trout instead.",
+special:"The famous fish-viewing bridge: trophy rainbows and bull trout hold in plain sight below; spawning kokanee turn the gravel red in fall. The 1918 Camp Sherman Store sells ice cream and flies.",
+wildlife:"Trophy-size trout, fall kokanee, osprey, bald eagles, mergansers, occasional otters.",
+safety:"Current is stronger than it looks; cold. No lifeguards anywhere on the Metolius.",
+amen:"Parking, store restrooms, riverside trail both directions, picnic spots; very limited cell service.",
+act:"Fish-spotting (bring polarized sunglasses), store treats, flat riverside walks.",
+r:{wa:3,sw:1,cr:4,wi:9,ph:8,re:9,pi:7,sc:9,ad:3,ov:8},worth:"The best free aquarium in Oregon",len:"1–2 hours",back:"Always",tags:["wildlife","free","fish"]},
+{id:"allingham",name:"Allingham–Gorge Campground Stretch",region:"nw",type:"Riverside campground reach, Metolius",drive:55,gps:"44.477,-121.637",elev:"2,900 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Campgrounds full weekends; day visitors light",fees:"Free at most day pullouts",
+water:"Same crystal 46–48 °F water; moderate current; mostly 2–5 ft over gravel through a string of ponderosa campgrounds (Allingham, Smiling River, Pine Rest, Gorge).",
+wade:"Brief ankle-to-knee wading at gravel edges for hardy kids; not a swimming river. Best treated as a creek-edge exploring river with a big-river feel.",
+special:"Classic ponderosa flat, historic cabins, and an easy riverside trail linking the campgrounds — prime bike-and-wander territory from a campsite base.",
+wildlife:"Trout everywhere, osprey, kingfishers, dusk deer through camp.",
+safety:"Constant cold current sweeps kids faster than parents expect; undercut banks in places.",
+amen:"Campgrounds with vault toilets, seasonal water, tables; no cell service.",
+act:"Riverside walking, watching fly anglers, fish spotting, campground weekends.",
+r:{wa:4,sw:1,cr:5,wi:8,ph:7,re:9,pi:8,sc:8,ad:3,ov:7},worth:"As a camping base, top tier",len:"2 hrs–weekend",back:"For camping, yes",tags:["fish","wildlife","free"],
+n26:"Fishing above Allingham Bridge reopened May 22, 2026 after the annual winter spawning closure. Entire river is catch-and-release, fly-only above Bridge 99."},
+{id:"wizard",name:"Wizard Falls Fish Hatchery & West Metolius Trail",region:"nw",type:"Hatchery, river frontage & springs hike",drive:60,gps:"44.500,-121.630",elev:"2,750 ft",agency:"ODFW",months:"Year-round, 8am–5pm; May–Jun for goslings",crowds:"Popular but the grounds absorb people",fees:"Free",
+water:"The river runs startlingly blue-green over white gravel here; hatchery ponds are clear and shallow; Wizard Falls itself is a low turquoise chute just upstream.",
+wade:"No swimming at the hatchery; careful toe-dipping at gravel bars on the trail. The water show is the point.",
+special:"Feed giant rainbows, brook trout, kokanee, and Atlantic salmon from quarter machines, picnic on lawns under huge ponderosas, then hike the beloved West Metolius Trail ~1 mile to enormous springs gushing from the far bank — one of Oregon's best easy family hikes.",
+wildlife:"Hatchery monsters, wild trout, geese and goslings, osprey, eagles, dippers.",
+safety:"Open water channels — fine for 10+, watch littles. River is cold and swift beyond the lawns.",
+amen:"Big lot, restrooms, picnic tables, interpretive signs; no cell service.",
+act:"Fish feeding, picnic, the springs hike, photography.",
+r:{wa:3,sw:1,cr:5,wi:10,ph:8,re:9,pi:10,sc:9,ad:4,ov:9},worth:"An automatic yes with kids",len:"2–4 hours",back:"Every Metolius trip",tags:["wildlife","hike","free","fish"]},
+{id:"bridge99",name:"Lower Metolius / Bridge 99",region:"nw",type:"Wild river canyon reach",drive:72,gps:"44.556,-121.627",elev:"2,600 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Light — the quietest Metolius",fees:"Free river access",
+water:"Clear, ~48 °F, with noticeably more volume and push than upstream; 3–6+ ft mid-channel over cobble.",
+wade:"Not for swimming; supervised edge wading for older kids only. This is the adventure-drive end of the river.",
+special:"Wild canyon feel, the Candle Creek confluence, primitive campgrounds, and Oregon's best bull trout water. Fall colors are superb.",
+wildlife:"Bull trout, eagles, otters, elk, black bear sign.",
+safety:"Remote: zero cell service, swift cold water, washboard gravel. Not a casual splash stop. East bank downstream is Warm Springs tribal land — respect signage.",
+amen:"Vault toilets at primitive campgrounds; nothing else.",
+act:"Wildlife watching, watching anglers chase bull trout, big-kid exploring.",
+r:{wa:3,sw:1,cr:5,wi:8,ph:7,re:7,pi:5,sc:8,ad:8,ov:6},worth:"For outdoorsy teens and anglers",len:"Half day",back:"Occasionally",tags:["wildlife","fish","free"]},
+{id:"jackcreek",name:"Head of Jack Creek",region:"nw",type:"Spring source & creek",drive:50,gps:"44.487,-121.716",elev:"~3,100 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Very light",fees:"None found; carry a pass",
+water:"Ice-clear constant-temperature spring water over bright gravel — a whole creek pouring out of a hillside.",
+wade:"Splash-and-look; the springs area is fragile, so keep feet to gravel margins downstream. Superb aquatic-insect hunting.",
+special:"A 1.2-mile easy walk to a 'river from a hole in the ground' moment — the pocket-size Head of the Metolius without the crowds.",
+wildlife:"Deer, woodpeckers in the old burn, dippers.",
+safety:"Minimal; sun exposure in the B&B burn scar.",
+amen:"Small trailhead; Jack Creek CG nearby (vault toilets); no cell service.",
+act:"Springs pilgrimage, creek-crawling for bugs, quiet picnic.",
+r:{wa:5,sw:1,cr:7,wi:5,ph:6,re:8,pi:6,sc:7,ad:4,ov:6},worth:"Lovely add-on to a Metolius day",len:"1–2 hours",back:"Yes",tags:["creek","hike","free"]},
+{id:"metpreserve",name:"Metolius Preserve / Lake Creek",region:"nw",type:"Creek through a 1,240-acre preserve",drive:47,gps:"44.444,-121.682",elev:"~3,000 ft",agency:"Deschutes Land Trust",months:"Apr–Jun & Oct (golden larch, kokanee)",crowds:"Very light",fees:"Free, daylight hours",
+water:"Small, clear, cold creek — but warmer than the Metolius since it drains Suttle Lake; ankle-to-knee over gravel.",
+wade:"Pleasant kid wading. In fall, spawning kokanee fill the creek — watch, don't disturb the redds.",
+special:"10+ miles of flat trails, western larch groves that turn gold in October, and the Lake Creek Trail running 5.5 miles up to Suttle Lake.",
+wildlife:"Fall kokanee (a genuinely great kid spectacle), otters, pileated woodpeckers, butterflies.",
+safety:"Minimal — navigation is the only challenge; bring the Land Trust map.",
+amen:"Two small trailhead lots, kiosks, no restrooms; no cell service.",
+act:"Kokanee-watching walks, creek wading, gravel-loop biking.",
+r:{wa:6,sw:1,cr:7,wi:8,ph:7,re:9,pi:6,sc:7,ad:4,ov:7},worth:"October makes it special",len:"2–3 hours",back:"Every fall",tags:["creek","wildlife","free","hike"]},
+{id:"suttle",name:"Suttle Lake",region:"nw",type:"253-acre glacial lake, 10 mph limit",drive:42,gps:"44.423,-121.737",elev:"3,438 ft",agency:"Deschutes NF / The Suttle Lodge",months:"Jun–Sep",crowds:"Heavy summer weekends at the beach and lodge",fees:"$5/day or NW Forest Pass at day-use/launch",
+water:"Moderately clear, greener than the spring-fed waters; summer surface 62–70 °F — genuinely swimmable; gradual sandy-gravel entry at the day-use beach.",
+wade:"Good. One of the few big swimmable lakes on this side, with a real (small) beach and shallow entry.",
+special:"The flat 3.7-mile shoreline loop trail is perfect family biking; The Suttle Lodge's lakeside Skip Bar does milkshakes and sandwiches; crayfish hide under every third rock.",
+wildlife:"Osprey, bald eagles, kokanee, brown trout, crayfish (kid favorite), mergansers.",
+safety:"Boat traffic (stay in the swim area); afternoon wind chop; water cool enough to tire swimmers.",
+amen:"Day-use beach, vault toilets, tables, launch, three campgrounds, lodge restaurant; spotty cell.",
+act:"Swim, loop hike/bike, crayfish hunting, SUP, milkshake finish.",
+r:{wa:8,sw:8,cr:4,wi:6,ph:7,re:8,pi:8,sc:8,ad:5,ov:8},worth:"The complete easy lake day",len:"Half–full day",back:"Regularly",tags:["swim","wade","beach","paddle","warm"]},
+{id:"scout",name:"Scout Lake",region:"nw",type:"Small warm forest lake",drive:47,gps:"44.415,-121.744",elev:"~3,700 ft",agency:"Deschutes NF",months:"Jul–early Sep",crowds:"Busy hot weekends — the not-so-secret warm lake",fees:"$5/day or NW Forest Pass (May–Sep)",
+water:"Clear-to-tea-colored; warms into the low-to-mid 70s °F by late July (no cold inlet); shallow gradual entry over sand and silt.",
+wade:"Excellent — the warmest swimming lake in the whole region. This is where kids stay in for hours instead of minutes.",
+special:"A warm bathtub in the pines above Suttle Lake, with Mt. Washington peeking over the trees and connector trails down to the big lake.",
+wildlife:"Newts (a huge hit), frogs, dragonflies, osprey overhead.",
+safety:"Deeper middle section; no lifeguard; dogs prohibited.",
+amen:"Parking, vault toilets, picnic tables, small walk-in campground; no cell service.",
+act:"Swimming, floaties, newt-spotting, picnic, walk down to Suttle for ice cream.",
+r:{wa:9,sw:9,cr:3,wi:6,ph:5,re:9,pi:8,sc:6,ad:4,ov:9},worth:"THE warm-water answer",len:"Half day",back:"All July–August",tags:["swim","wade","warm"]},
+{id:"dark",name:"Dark Lake",region:"nw",type:"Deep cliff-edged lake beside Scout Lake",drive:48,gps:"44.413,-121.748",elev:"~3,700 ft",agency:"Deschutes NF",months:"Jul–Sep",crowds:"Light — everyone stops at Scout",fees:"Covered by the Scout/Suttle fee area",
+water:"Dark, clear, colder than Scout, with steep drop-offs close to shore and a rocky wooded shoreline.",
+wade:"Fair for confident teen swimmers; poor for waders (little shallow shelf). Scout Lake is the better kid swim next door.",
+special:"Moody, cliff-backed setting that feels wilder than its five-minute distance from Scout; part of the Scout–Dark–Cache lakes trail network.",
+wildlife:"Brook trout, osprey, woodpeckers.",
+safety:"Sudden drop-offs, cold layers below the surface, submerged logs under the tempting jump rocks — discourage jumping. East shore is a private youth camp.",
+amen:"Small pullout parking; use Scout Lake facilities.",
+act:"Short exploring hike, fishing, one brave plunge.",
+r:{wa:3,sw:5,cr:3,wi:5,ph:6,re:7,pi:5,sc:7,ad:6,ov:5},worth:"A 30-minute detour from Scout",len:"30–60 min",back:"Maybe",tags:["swim","hike"]},
+{id:"bluecrater",name:"Blue Lake Crater (Corbett SRS)",region:"nw",type:"Deep volcanic crater lake, hike-in",drive:50,gps:"44.417,-121.767",elev:"3,450 ft",agency:"Deschutes NF / OR State Parks / private east end",months:"Jun–Oct",crowds:"Very light — access confusion keeps everyone away",fees:"Free (Corbett trail access)",
+water:"Intensely blue, cold year-round, extraordinarily deep for its size (300+ ft reported), with almost no shallow shelf. Fed by springs in a 3,500-year-old crater.",
+wade:"Poor for families — steep shores, no developed access. Treat it as a hiking destination with a jaw-dropping view of water.",
+special:"One of Oregon's youngest volcanic craters holding one of its bluest lakes. Legal access is the hike-in Corbett State Recreation Site trail off FR 2076 (~2 miles); the east-end road is private (Caldera arts center) — don't drive in that way.",
+wildlife:"Deer, eagles, quiet-forest birds.",
+safety:"Remote, no facilities, cold deep water, steep banks, no cell service. Confirm the trailhead with the Sisters Ranger District before promising it to kids.",
+amen:"None — small unsigned parking area.",
+act:"Off-the-beaten-path hike for older kids, geology talk, meadow picnic.",
+r:{wa:1,sw:2,cr:2,wi:5,ph:8,re:6,pi:5,sc:9,ad:8,ov:5},worth:"For curious hikers only",len:"Half day",back:"Once is memorable",tags:["hike","free"]}
+);
+D.push(
+{id:"round",name:"Round Lake",region:"nw",type:"Small quiet forest lake",drive:55,gps:"44.45,-121.77",elev:"~4,300 ft",agency:"Deschutes NF",months:"Jul–Sep",crowds:"Very light",fees:"Free",
+water:"Clear, cool-to-mild by late summer; soft mucky entries in spots; no current.",
+wade:"Fair — more of a paddle-fish-explore lake than a beach lake.",
+special:"True solitude 15 minutes off Highway 20: regenerating fire forest, a connector trail toward Square Lake, and a decent shot at having the whole lake to yourselves.",
+wildlife:"Stocked trout, deer, woodpeckers, ospreys.",
+safety:"Rough washboard gravel (FR 1210); no facilities, no cell service; one shore is a private youth camp.",
+amen:"None — former campground is now dispersed camping only.",
+act:"Quiet canoe/kayak, fishing, hammock reading, solitude.",
+r:{wa:4,sw:4,cr:3,wi:6,ph:5,re:9,pi:5,sc:6,ad:5,ov:5},worth:"When solitude IS the plan",len:"2–4 hours",back:"Occasionally",tags:["paddle","fish","free"]},
+{id:"big",name:"Big Lake",region:"nw",type:"225-acre lake with sandy beaches",drive:57,gps:"44.381,-121.870",elev:"4,640 ft",agency:"Willamette NF",months:"Jul–Sep (late snowmelt)",crowds:"Busy campgrounds; beaches spread people out",fees:"Day-use/launch fees at developed sites; NW Forest Pass at trailheads",
+water:"Clear; summer surface 60–68 °F; genuine sandy gentle-slope beaches (the best is the half-mile walk to the south end); no current.",
+wade:"Good — real Cascade sand beaches are rare and Big Lake has them. Gradual entries suit mixed ages.",
+special:"Mt. Washington looms straight over the water; the 6-mile Patjens Lakes wilderness loop starts here for teens with energy.",
+wildlife:"Osprey, eagles, deer; ferocious early-summer mosquitoes.",
+safety:"Motorboat and jet-ski traffic on weekends; afternoon wind; cool water.",
+amen:"Two campgrounds, drinking water, vault toilets, launch, day-use areas; little cell service.",
+act:"Beach day, paddling, sandcastles, Patjens Lakes hike.",
+r:{wa:8,sw:7,cr:3,wi:5,ph:8,re:7,pi:7,sc:9,ad:6,ov:7},worth:"Beach + volcano view = yes",len:"Half–full day",back:"Yes",tags:["beach","swim","wade","paddle"]},
+{id:"clear",name:"Clear Lake",region:"nw",type:"Spring-fed lava lake, source of the McKenzie",drive:68,gps:"44.37,-122.00",elev:"3,012 ft",agency:"Willamette NF / Linn County resort",months:"Late May–Oct",crowds:"Moderate; heavier weekends",fees:"Free day use; $5 launch for your own boat",
+water:"Astonishing clarity — up to 100–200 ft visibility — at a constant 38–43 °F. Aquamarine over white volcanic sediment. Swimming is genuinely dangerous-cold; this is a boating-and-staring lake.",
+wade:"Not a swimming lake (quick dares only). Rent a rowboat instead — that's the magic.",
+special:"Row over a 3,000-year-old drowned forest: ancient Douglas-fir snags still standing beneath your boat in unreal blue. Lava flows line the east shore; the Great Spring is a short walk; the 4.6-mile loop trail circles it all. Top-five family activity in this entire guide.",
+wildlife:"Trout cruising visibly below the boat, osprey, eagles, gray jays.",
+safety:"Cold-water immersion risk — PFDs on kids in boats, non-negotiable. Electric motors only keeps it quiet.",
+amen:"Rustic resort with cabins, cafe, first-come rowboat rentals; Coldwater Cove CG; vault toilets; minimal cell.",
+act:"Rowboat over the sunken forest, loop hike/bike, cafe hot chocolate, photography.",
+r:{wa:2,sw:1,cr:3,wi:7,ph:10,re:9,pi:7,sc:10,ad:8,ov:9},worth:"An all-timer — go",len:"Half–full day",back:"Every year",tags:["paddle","wildlife","hike","free"]},
+{id:"sahalie",name:"Sahalie & Koosah Falls",region:"nw",type:"Two major McKenzie waterfalls",drive:70,gps:"44.349,-122.032",elev:"~3,000 ft",agency:"Willamette NF",months:"Year-round; biggest Apr–Jul",crowds:"Sahalie lot fills fast; Koosah usually has room",fees:"Free — no pass required",
+water:"Violent, ice-cold, aerated turquoise whitewater. Absolutely not enterable — and absolutely spectacular.",
+wade:"None. Viewing only, and worth every step.",
+special:"Two giant falls (Sahalie ~75–100 ft, Koosah ~65 ft) a half mile apart on a 0.8-mile mossy old-growth loop with bridges at both ends — the highest-reward-per-mile family hike in Oregon, and 10–15° cooler than Bend on hot days.",
+wildlife:"Dippers, mist-zone wildflowers, chickarees.",
+safety:"Slick rock and wet railings; keep kids inside barriers; steep social trails to the bank.",
+amen:"Two paved lots, restrooms, observation decks, interpretive panels; no cell service.",
+act:"The waterfall loop, photography, hot-day cool-off, nature journaling.",
+r:{wa:1,sw:1,cr:2,wi:4,ph:10,re:7,pi:5,sc:10,ad:5,ov:8},worth:"Emphatically",len:"1.5–2 hours",back:"With every visitor",tags:["waterfall","hike","free"]},
+{id:"tamolitch",name:"Tamolitch Blue Pool",region:"nw",type:"Spring-fed pool, McKenzie re-emergence",drive:85,gps:"44.293,-122.032",elev:"~2,200 ft",agency:"Willamette NF",months:"May–Oct",crowds:"Heavy — weekday mornings only for peace",fees:"Conflicting sources; bring a NW Forest Pass",
+water:"Surreal opaque-blue clarity at a constant 37 °F. Looks 8 ft deep; it's ~30. The McKenzie flows underground through lava for 3 miles and boils up here.",
+wade:"Technically legal, strongly discouraged: 37 °F causes immediate cold-shock incapacitation, entry is a scramble, and rescue takes hours. Treat the pool like a museum piece.",
+special:"A dramatic basalt amphitheater around impossibly blue water, reached by a lovely 3.7-mile round trip on the McKenzie River Trail — rooty, lava-rock fun for kids 10+.",
+wildlife:"Dippers, osprey, old-growth birds.",
+safety:"Multiple deaths from cliff jumping and cold shock, including June 2026. Unstable cliff rims. Make the family no-jumping rule explicit BEFORE the hike. No cell coverage.",
+amen:"Trailhead parking (fills early), vault toilet; nothing at the pool.",
+act:"The hike and the view; photography; solemn appreciation.",
+r:{wa:1,sw:1,cr:3,wi:4,ph:10,re:5,pi:4,sc:10,ad:7,ov:7},worth:"Yes — as a look-only pilgrimage",len:"Half day",back:"Once may be enough",tags:["hike","waterfall"],
+n26:"A drowning occurred here in June 2026. A $3.4M Forest Service project to build safer overlooks and parking is underway — expect changes; check Willamette NF alerts."},
+{id:"creekside",name:"Creekside Park (Sisters)",region:"nw",type:"Town park on Whychus Creek",drive:27,gps:"44.288,-121.545",elev:"3,180 ft",agency:"City of Sisters",months:"Jun–Sep for splashing",crowds:"Busy summer, mellow mornings",fees:"Free",
+water:"Clear, cold snowmelt off the Three Sisters (45–60 °F by season); ankle-to-knee deep over gravel and cobble; gentle-to-moderate current.",
+wade:"Good easy wading — the region's most civilized creek stop, two blocks from bakeries and ice cream.",
+special:"A restored creek channel rebuilt for fish passage runs through a lawn park on the edge of downtown Sisters. Wade, then walk to town for treats.",
+wildlife:"Reintroduced steelhead and Chinook use Whychus Creek (the West Coast's largest reintroduction program); redband trout, ducks, osprey.",
+safety:"Swift and cold during May–June runoff; stay off fenced restoration banks.",
+amen:"Parking, restrooms, lawns, tables, drinking fountain, playground, full cell service, campground adjacent.",
+act:"The wade-and-ice-cream combo, fish spotting, easy picnics.",
+r:{wa:8,sw:2,cr:7,wi:5,ph:5,re:8,pi:8,sc:6,ad:3,ov:7},worth:"Easiest water stop in the region",len:"1–2 hours",back:"Every Sisters trip",tags:["wade","creek","free"]},
+{id:"whychuscanyon",name:"Whychus Canyon Preserve",region:"nw",type:"Creek in a rimrock canyon (930 acres)",drive:37,gps:"44.360,-121.447",elev:"~3,000 ft",agency:"Deschutes Land Trust",months:"Apr–Jun & Sep–Oct (hot and exposed midsummer)",crowds:"Light — a locals' favorite",fees:"Free, daylight hours; dogs leashed",
+water:"Clear, cold snowmelt creek; shallow riffles with occasional waist-deep pools over cobble.",
+wade:"Fair wading where trails reach the creek — a hiking-with-a-creek-payoff spot rather than a swim destination.",
+special:"Seven miles of trails including a historic Santiam Wagon Road segment, big canyon views, and restored floodplain reaches where steelhead now spawn.",
+wildlife:"Steelhead and salmon (seasonal), otters, mule deer, golden eagles, 100+ bird species.",
+safety:"Rattlesnakes possible on rimrock in summer; sun exposure; canyon edges.",
+amen:"Small trailhead lot, kiosk; no restrooms or water; weak cell.",
+act:"Half-day hikes with a creek lunch, wildflower walks, wagon-road history.",
+r:{wa:5,sw:2,cr:6,wi:8,ph:8,re:7,pi:6,sc:8,ad:6,ov:7},worth:"Spring and fall, very much",len:"Half day",back:"Seasonally",tags:["hike","creek","wildlife","free"]},
+{id:"camppolk",name:"Camp Polk Meadow Preserve",region:"nw",type:"Restored creek meadow (151 acres)",drive:33,gps:"44.328,-121.509",elev:"3,160 ft",agency:"Deschutes Land Trust",months:"Apr–Jun & Sep–Oct",crowds:"Very light",fees:"Free, daylight hours; no dogs",
+water:"Clear, cold, shallow Whychus Creek meandering through its restored historic channel — a nationally noted 2012 restoration.",
+wade:"Limited by design to protect the restoration — this is observation water. Check posted signs.",
+special:"One of Central Oregon's birding hot spots (~180 species) beside a pioneer cemetery; a flat half-mile gravel loop suits every walker.",
+wildlife:"Spawning steelhead and salmon, otters, elk, deer, and that huge bird list — bring binoculars.",
+safety:"Minimal — stay on trails, respect fencing.",
+amen:"Small trailhead, kiosk; no restrooms.",
+act:"Wildlife watching, restoration-science field trip, photography.",
+r:{wa:2,sw:1,cr:4,wi:10,ph:7,re:8,pi:5,sc:7,ad:3,ov:6},worth:"For bird families, a must",len:"1–2 hours",back:"Spring and fall",tags:["wildlife","free","hike"]},
+{id:"indianford",name:"Indian Ford Meadow & Creek",region:"nw",type:"Spring-influenced meadow creek",drive:30,gps:"44.312,-121.588",elev:"3,200 ft",agency:"Deschutes Land Trust / Deschutes NF",months:"Apr–Jun; golden aspen in fall",crowds:"Very light",fees:"Preserve free",
+water:"Tiny, shallow (inches to a couple of feet), clear and slow; can dwindle late summer.",
+wade:"Toe-dipping only — this is a nature-walk creek.",
+special:"The 1-mile Founder's Trail crosses meadow-to-pine habitats with knockout Cascade views; 130+ bird species recorded on 63 acres.",
+wildlife:"A beginner-birder's paradise; deer, coyotes, butterflies.",
+safety:"Minimal; soggy ground in spring.",
+amen:"Small parking, interpretive signs; campground with vault toilets nearby.",
+act:"Bird checklist walks, sketching, an easy add-on to any Sisters day.",
+r:{wa:2,sw:1,cr:3,wi:8,ph:7,re:8,pi:6,sc:7,ad:2,ov:5},worth:"A gentle half-hour well spent",len:"1 hour",back:"In passing",tags:["wildlife","free","hike"]},
+{id:"chush",name:"Chush Falls (Upper Whychus Creek)",region:"nw",type:"200-ft wilderness waterfall",drive:60,gps:"44.198,-121.618",elev:"~5,200 ft trailhead",agency:"Deschutes NF, Three Sisters Wilderness",months:"Jun–Oct; biggest water May–Aug",crowds:"Moderate — far quieter than Blue Pool",fees:"Free self-issue wilderness permit at the trailhead (confirm current rules)",
+water:"Milky-to-clear glacial melt off Broken Top and South Sister — very cold and fast; not wadeable near the falls.",
+wade:"No — this is a viewing-hike destination.",
+special:"5.9 miles round trip (~850 ft gain) through the open Pole Creek burn with huge South Sister views, ending at a 200-ft curtain waterfall. The best 'earn a big waterfall' hike near Sisters for kids 10+.",
+wildlife:"Woodpeckers thriving in the burn, deer, pika near talus.",
+safety:"Cliff edges at viewpoints, downed trees, full sun in the burn (carry water), no cell service. The route beyond to Upper Chush is steep and unmaintained — teens with good shoes only.",
+amen:"Gravel trailhead lot; minimal facilities.",
+act:"The waterfall hike, photography, burn-ecology lesson.",
+r:{wa:2,sw:1,cr:3,wi:5,ph:9,re:5,pi:4,sc:9,ad:8,ov:7},worth:"For hiking families, yes",len:"Half day",back:"Yes",tags:["waterfall","hike","free"]},
+{id:"threecreek",name:"Three Creek Lake",region:"nw",type:"28-acre alpine cirque lake",drive:60,gps:"44.101,-121.624",elev:"6,550 ft",agency:"Deschutes NF",months:"Jul–Sep only (road opens late June–July)",crowds:"Busy July–Aug weekends; weekday heaven",fees:"Day use historically free; carry a NW Forest Pass",
+water:"Clear and cold (high 50s–low 60s °F at peak); gradual sandy-gravel entries on the north side, deeper toward the cliffs; snowmelt-fed.",
+wade:"Good for a bracing alpine swim — kids last ten minutes and love every one of them.",
+special:"Tam McArthur Rim towers 1,000+ ft overhead; a tiny historic summer store sometimes operates; rowboats, wildflowers, and late-summer huckleberries complete the picture.",
+wildlife:"Stocked trout, Clark's nutcrackers, pika, deer; thick July mosquitoes.",
+safety:"Afternoon thunderstorms build fast at elevation; cold water; altitude can tire flatlander kids.",
+amen:"Two campgrounds (vault toilets, no piped water), hand-launch boating; no cell service.",
+act:"Alpine swim-and-picnic, rowboat, fishing, berry picking.",
+r:{wa:7,sw:6,cr:4,wi:6,ph:9,re:8,pi:8,sc:10,ad:7,ov:8},worth:"The easiest true-alpine day",len:"Half–full day",back:"Annually",tags:["swim","wade","paddle","fish","hike"],
+n26:"Campgrounds close Sep 27, 2026. FR 16 opening date varies — check the Sisters Ranger District before driving up early season."},
+{id:"littlethreecreek",name:"Little Three Creek Lake",region:"nw",type:"Hike-in alpine lake",drive:60,gps:"44.108,-121.644",elev:"~6,600 ft",agency:"Deschutes NF, wilderness edge",months:"Jul–Sep",crowds:"Light — most visitors never leave the big lake",fees:"Self-issue permit; confirm which permit applies to your route (Tam McArthur TH is limited-entry)",
+water:"Clear, shallower and therefore warmer than Three Creek Lake by late summer — recent trip reports call it 'perfect to cool off'; sandy-rocky bottom.",
+wade:"Good — arguably the better kid swim of the pair once you've earned it on foot (1.5–2.5 mi).",
+special:"Tam McArthur Rim reflections in a quiet cirque with brook trout rising. The ideal first real 'hike-to-swim' adventure for the 10–16 crowd.",
+wildlife:"Trout, gray jays, deer.",
+safety:"No services, no cell, confusing junctions (download a map), horse traffic on the trail.",
+amen:"None at the lake; limited parking near the horse camp.",
+act:"Hike-to-swim, fishing, summit-view picnics.",
+r:{wa:7,sw:7,cr:4,wi:5,ph:8,re:8,pi:6,sc:9,ad:8,ov:8},worth:"The upgrade over its big sibling",len:"Half–full day",back:"Yes",tags:["hike","swim","fish"]}
+);
+D.push(
+{id:"tumalosp",name:"Tumalo State Park",region:"north",type:"State park on the Middle Deschutes",drive:15,gps:"44.128,-121.332",elev:"3,140 ft",agency:"Oregon State Parks",months:"Jun–Sep",crowds:"High — arrive before 11 am on weekends",fees:"$10/day resident · $12 non-res · $60 annual",
+water:"Clear, cold (60s °F late summer); the normally swift Deschutes goes notably gentle here; shallow gravel-sand entries, kid-friendly depths near shore.",
+wade:"One of the best family swim/wade spots in Central Oregon. The downstream side of the day-use area has the calmest water; mild riffles upstream invite short tube runs.",
+special:"Big shaded lawns, a playground, riverside picnic tables, and a trail with a boulder-field catwalk heading upstream toward Riley Ranch. Yurts and a full campground across the road.",
+wildlife:"Deer, otters, kingfishers, eagles.",
+safety:"Cold-shock early season; a few swift spots upstream; no lifeguards.",
+amen:"Restrooms, tables, fire rings, playground, drinking water, campground; good cell service.",
+act:"The classic swim-picnic day, short tube riffles, camp-and-swim weekends.",
+r:{wa:10,sw:8,cr:6,wi:5,ph:6,re:9,pi:9,sc:7,ad:4,ov:9},worth:"The benchmark close-in river day",len:"Half–full day",back:"Constantly",tags:["swim","wade","creek","warm"],
+n26:"Day-use parking now $10/$12 (statewide increase Jan 1, 2026)."},
+{id:"clinefalls",name:"Cline Falls State Scenic Viewpoint",region:"north",type:"Riverside day-use park",drive:25,gps:"44.267,-121.253",elev:"2,960 ft",agency:"Oregon State Parks",months:"Jun–Sep",crowds:"Low-moderate — Redmond locals' spot",fees:"Free at research time; fee list expanded Mar 2026, confirm on arrival",
+water:"A mix of deep calm pools, shallow coves, and short swift stretches; clear, cool, rock-gravel bottom.",
+wade:"Good variety for mixed-age kids: shallow coves for cautious waders, pools for teens, and short inner-tube riffles between.",
+special:"Willows, picnic lawns, and a pool-hop layout that keeps everyone busy; the actual falls is downstream of the park.",
+wildlife:"Rainbow and brown trout (bull trout too), herons, otters.",
+safety:"Swift currents and hidden underwater obstructions per OPRD — life jackets in moving water; old diversion structures downstream, don't tube past the park.",
+amen:"Restrooms, picnic tables, shade; day-use only.",
+act:"Picnic + pool-hopping + short tube runs; fishing.",
+r:{wa:8,sw:6,cr:7,wi:5,ph:5,re:8,pi:8,sc:6,ad:5,ov:7},worth:"Underrated everyday river day",len:"2–4 hours",back:"Yes",tags:["wade","swim","creek","fish","free"]},
+{id:"bordenbeck",name:"Borden Beck Wildlife Preserve",region:"north",type:"Riverside preserve, Lower Bridge",drive:38,gps:"44.396,-121.292",elev:"~2,500 ft",agency:"Deschutes County preserve",months:"May–Sep",crowds:"Very low",fees:"Free",
+water:"Clear Middle Deschutes with multiple gentle entry points suitable for a summer swim or cool-off.",
+wade:"Good quiet wading and dipping — the crowd-free alternative when Tumalo SP is packed.",
+special:"A bird-rich riparian corridor with an upstream bank walk and swim stops; flies/lures only, barbless for anglers.",
+wildlife:"Ducks, geese, songbirds galore; otters.",
+safety:"No facilities, no lifeguard; standard moving-water rules.",
+amen:"Small free gravel lot only.",
+act:"Bank walks with swim stops, birding, fishing, nature journaling.",
+r:{wa:7,sw:6,cr:6,wi:8,ph:6,re:9,pi:6,sc:7,ad:5,ov:7},worth:"The insider's Deschutes swim",len:"2–4 hours",back:"Yes",tags:["swim","wade","wildlife","free","fish"]},
+{id:"steelhead",name:"Steelhead Falls",region:"north",type:"20-ft falls & swimming hole, desert canyon",drive:45,gps:"44.361,-121.300",elev:"river ~2,250 ft",agency:"BLM (Wilderness Study Area)",months:"Jul–Aug for swimming; Apr–Jun for flowers",crowds:"Moderate-high on hot weekends; small lot",fees:"Free",
+water:"Clear green pools; strong current at the falls; sharp deep-to-shallow transitions over sand and bedrock; ~64 °F by late July. Sandy beach pockets downstream.",
+wade:"The big pool below the falls suits strong swimmers; calmer sandy entries downstream suit younger kids. An easy 0.5-mile trail drops in.",
+special:"A real waterfall-and-swimming-hole in a painted desert canyon — basalt walls, golden eagles, wildflower springs. One of the region's most adventurous swim days.",
+wildlife:"Golden eagles, canyon wrens, lizards, deer, redband trout.",
+safety:"Cliff jumping is popular here and injures people regularly — depths shift yearly and rocks move; scout everything, never jump near the falls. No cell service; full sun; rattlesnake country; carry lots of water.",
+amen:"Trailhead parking; essentially nothing else.",
+act:"Hike-swim combo for teens, canyon photography, wildflower walks.",
+r:{wa:6,sw:8,cr:5,wi:7,ph:9,re:6,pi:5,sc:9,ad:9,ov:8},worth:"Peak adventure-per-mile",len:"Half day (start early)",back:"Every summer, with rules",tags:["swim","waterfall","hike","free"]},
+{id:"scoutcamp",name:"Scout Camp Trail",region:"north",type:"Canyon loop to a wild Deschutes reach",drive:50,gps:"44.418,-121.293",elev:"~700 ft descent",agency:"BLM / Crooked River Nat'l Grassland",months:"Year-round (good when Alder Springs is gated); avoid midday heat",crowds:"Low",fees:"Free",
+water:"Secluded riverbank with wading and swim pockets on a wild reach of the Middle Deschutes.",
+wade:"Good pockets for fit kids 10+ who earned them — the 3-mile loop drops ~700 ft with some scrambling.",
+special:"A genuinely wild canyon experience under an hour from Bend, with the river to yourselves on weekdays.",
+wildlife:"Golden eagles, canyon wrens, deer, river otters.",
+safety:"Steep, hot, rattlesnake country, some scramble moves; no facilities, no cell. Not for flip-flops.",
+amen:"None — trailhead only.",
+act:"Adventure hike with swim payoff, photography, teen challenge day.",
+r:{wa:6,sw:6,cr:5,wi:7,ph:8,re:6,pi:4,sc:9,ad:10,ov:7},worth:"For fit families, a favorite",len:"Half day",back:"Yes",tags:["hike","swim","wade","free"]},
+{id:"alder",name:"Alder Springs / Whychus Creek Ford",region:"north",type:"Spring-fed creek canyon with a ford",drive:50,gps:"44.393,-121.357",elev:"canyon floor ~2,400 ft",agency:"USFS, Crooked River Nat'l Grassland",months:"Apr–Jun & Sep–Oct (road closed Dec 1–Mar 31)",crowds:"Low-moderate",fees:"Free",
+water:"Clear spring-boosted Whychus Creek; the mandatory ford is knee-deep-plus in early summer, tame by late season.",
+wade:"The ford IS the kid highlight — shoes off, water shoes on, everyone across. Continue 1.5 miles to sandy benches at the Deschutes confluence.",
+special:"Springs pour into a painted canyon; sandy beaches at the confluence feel like a secret. One of the best 'real expedition' days that's still doable for 10-year-olds.",
+wildlife:"Canyon wrens, eagles, otters, deer.",
+safety:"Full sun and heat; carry lots of water; rattlesnakes; the ford can be pushy in June. No facilities, no cell.",
+amen:"None — small trailhead.",
+act:"The ford, confluence beach picnic, canyon photography, wading.",
+r:{wa:8,sw:5,cr:8,wi:7,ph:9,re:7,pi:6,sc:9,ad:9,ov:8},worth:"An expedition to brag about",len:"Full day",back:"Spring and fall",tags:["creek","wade","hike","free","beach"]},
+{id:"smithrock",name:"Smith Rock State Park (Crooked River)",region:"north",type:"River bends under 600-ft cliffs",drive:40,gps:"44.366,-121.140",elev:"river 2,640 ft",agency:"Oregon State Parks",months:"Water play Jul–Sep; park best spring/fall",crowds:"Very high year-round; lots full mid-morning",fees:"$10/$12 day-use · $60 annual",
+water:"Usually low, murky-green and slow by late summer over mud and cobble; can rage during spring flows.",
+wade:"Feet-in wading along the River Trail — 'cool your feet mid-hike' water rather than swimming.",
+special:"World-famous welded-tuff cliffs, otters below Monkey Face, climbers overhead everywhere — the river loop is a genuinely great family walk.",
+wildlife:"River otters, golden eagles, prairie falcons, canyon wrens, deer.",
+safety:"Heat is the main kid hazard; rattlesnakes; steep drop-offs above the river.",
+amen:"Restrooms, water, visitor info, walk-in camp.",
+act:"River Trail loop with wading stops, climber-watching, photography.",
+r:{wa:5,sw:2,cr:4,wi:8,ph:10,re:6,pi:6,sc:10,ad:7,ov:7},worth:"For the scenery, always",len:"Half day",back:"Shoulder seasons",tags:["hike","wade","wildlife"]},
+{id:"lbc",name:"Lake Billy Chinook / Cove Palisades",region:"north",type:"4,000-acre canyon reservoir",drive:55,gps:"44.548,-121.288",elev:"1,945 ft — the region's warmest water",agency:"Oregon State Parks / PGE / CTWS",months:"Jun–Sep",crowds:"Very high summer weekends; heavy boat traffic",fees:"$10/$12 day-use · $60 annual",
+water:"Green-tinted, generally clear; surface hits the low-to-mid 70s °F by August — the warmest swimming in this guide; sandy day-use beaches with gradual entries, then deep water fast.",
+wade:"Three day-use areas (Lower Deschutes, Upper Deschutes, Crooked River) all have swim beaches and docks; no lifeguards.",
+special:"Drowned river canyons meeting under 700-ft basalt palisades: houseboats, the Tam-a-lau plateau hike, marina rentals, and truly warm water.",
+wildlife:"Bald eagles (big winter population), bull trout, kokanee, otters, bighorn sheep in the lower canyon.",
+safety:"RECURRING ALGAE: an OHA advisory was issued June 12, 2026 and downgraded June 29 (still risky for dogs) — check the OHA page before every swim trip. Also boat traffic, sudden depth, and canyon winds.",
+amen:"Campgrounds, cabins, marina with rentals and store, pavilions, fish-cleaning stations.",
+act:"Beach days, SUP/kayak rentals, houseboat gawking, eagle watching, Tam-a-lau sunrise hike.",
+r:{wa:7,sw:9,cr:3,wi:7,ph:8,re:7,pi:8,sc:9,ad:7,ov:8},worth:"For warm-water beach days, yes — check algae first",len:"Full day",back:"Yes, advisories permitting",tags:["swim","beach","warm","paddle","wildlife"],
+n26:"OHA cyanobacteria advisory June 12, 2026, downgraded to precaution June 29 — verify current status before swimming; keep dogs out."},
+{id:"haystack",name:"Haystack Reservoir",region:"north",type:"240-acre grassland reservoir",drive:45,gps:"44.494,-121.143",elev:"2,880 ft",agency:"USFS, Crooked River Nat'l Grassland",months:"May–Sep",crowds:"Low — the quiet alternative to Billy Chinook",fees:"Day-use $7/vehicle; camping $12–20",
+water:"Moderately clear early season, greener late; warms into the 60s–70 °F by midsummer; gentle gravel-dirt entries with gradual depth.",
+wade:"Easygoing shorelines good for kids; swimming permitted, no lifeguard.",
+special:"Mt. Jefferson floats over the water; warm-water fishing (crappie, bass) plus trout and kokanee; small enough to feel manageable for first-time-camper weekends.",
+wildlife:"Ospreys, grebes, nighthawks; a fun mixed fishery.",
+safety:"Occasional late-summer algae (check OHA); watch for anglers' hooks along shore; irrigation drawdown late season.",
+amen:"Two campgrounds, vault toilets, boat ramp.",
+act:"Shore fishing, float toys, easy camping weekends, sunset watching.",
+r:{wa:7,sw:7,cr:3,wi:6,ph:6,re:8,pi:7,sc:7,ad:4,ov:7},worth:"Sneaky-good warm water",len:"Half–full day",back:"Yes",tags:["swim","wade","fish","warm"]},
+{id:"ochococreek",name:"Ochoco Creek Park (Prineville)",region:"east",type:"In-town creek greenway",drive:40,gps:"44.305,-120.830",elev:"2,870 ft",agency:"Crook County Parks / City of Prineville",months:"May–Sep",crowds:"Low-moderate",fees:"Free",
+water:"Small, shallow, clear creek over gravel; ankle-to-knee deep in summer.",
+wade:"Wading and crawdad-hunting water — pair it with the big Castle Park play structure and the splash pad at nearby Stryker Park.",
+special:"Fifteen acres of creek, lawns, playgrounds, skate park, and paths — small-town park perfection for a break on Ochoco adventures.",
+wildlife:"Ducks, songbirds, stocked trout, crawdads.",
+safety:"Brief spring swell; otherwise about as mellow as moving water gets.",
+amen:"Restrooms (ADA), pavilions, paths, playgrounds, town amenities.",
+act:"Creek wading + playground + splash pad triple-header, crawdadding.",
+r:{wa:7,sw:2,cr:7,wi:4,ph:3,re:8,pi:8,sc:4,ad:3,ov:6},worth:"En route, definitely",len:"1–2 hours",back:"On Ochoco days",tags:["creek","wade","free"]},
+{id:"ochocores",name:"Ochoco Reservoir",region:"east",type:"1,000-acre irrigation reservoir",drive:48,gps:"44.30,-120.74",elev:"3,130 ft",agency:"Crook County Parks / OID",months:"May–early Jul, before drawdown",crowds:"Low",fees:"Low/free county park day use (unverified — check signs)",
+water:"Turbid-green, warms into the 70s; mud-gravel shore with gradual entries; heavy late-season drawdown.",
+wade:"OK for a splash from the county park early season; better fishing than swimming.",
+special:"Easy roadside access with a campground; spring trout fishing from shore is simple and productive for kids.",
+wildlife:"Bald eagles, ospreys, mule deer, rainbow trout.",
+safety:"Dropped to ~45% capacity in 2025, stranding the dock; increased algae reported — check conditions and OHA before boating or swimming.",
+amen:"County campground, vault toilets, boat ramp (condition varies).",
+act:"Spring shore fishing, picnics, eagle watching.",
+r:{wa:4,sw:4,cr:2,wi:6,ph:4,re:6,pi:6,sc:5,ad:3,ov:5},worth:"Mostly for anglers",len:"2–3 hours",back:"In spring",tags:["fish","warm"]},
+{id:"prinevilleres",name:"Prineville Reservoir State Park",region:"east",type:"3,000-acre reservoir & Dark Sky Park",drive:60,gps:"44.199,-120.725",elev:"3,235 ft",agency:"Oregon State Parks",months:"Jun–Sep",crowds:"Moderate; shoreline disperses well",fees:"$10/$12 day-use · $60 annual",
+water:"Green, moderately turbid, warm (low 70s °F); rocky-muddy shores; a roped-off swim area anchors the main day-use beach.",
+wade:"The roped swim beach with its gradual entry is the family anchor; no lifeguards.",
+special:"A certified International Dark Sky Park — swim all afternoon, stay for ranger astronomy programs. 43 miles of shoreline, boat-in campsites, legendary crawdadding.",
+wildlife:"Eagles, ospreys, deer, antelope; bass, crappie, trout, crawdads everywhere.",
+safety:"Recurring cyanobacteria (a fall 2025 advisory included do-not-eat guidance for fish/crayfish during the bloom) — check OHA in summer. Boat traffic midlake.",
+amen:"Campground with cabins and showers, boat ramps, fish-cleaning station, swim beach.",
+act:"Swim beach + astronomy night double-header, crawdadding, fishing.",
+r:{wa:7,sw:7,cr:3,wi:6,ph:7,re:8,pi:7,sc:7,ad:5,ov:7},worth:"The stargazing seals it",len:"Full day–overnight",back:"Yes (check algae)",tags:["swim","warm","fish","beach"],
+n26:"Fall 2025 algae advisory lifted Dec 23, 2025; expect summer monitoring in 2026."},
+{id:"crookedriver",name:"Crooked River below Bowman Dam (Chimney Rock)",region:"east",type:"Wild & Scenic tailwater in a basalt canyon",drive:65,gps:"44.127,-120.793",elev:"3,100 ft",agency:"BLM",months:"Jul–Sep for comfortable wading; fishes year-round",crowds:"Low-moderate along 8 miles",fees:"Day use free; camping $8/night",
+water:"Cold, clear tailwater with a swift, deceptively strong current — flows are set by dam releases and change with irrigation season. Knee-to-thigh depths over slick cobble at typical fishing flows, but shallow does not mean gentle here.",
+wade:"A good edge-wading river for kids who like fishing and flipping rocks for bugs — at the margins, at lower flows, with an adult. Swimming is NOT recommended: the dam's cold-water releases (managed for the redband trout fishery) keep the current swift and challenging even in summer. Check the release schedule before wading deep.",
+special:"Nine first-come campgrounds strung through a golden canyon, a famous redband trout fishery, the 2.6-mile Chimney Rock rim hike, and a wheelchair-accessible fishing platform.",
+wildlife:"Golden eagles, herons, otters, mule deer; astonishing insect life for junior entomologists.",
+safety:"No swimming just below Bowman Dam — cold releases create swift, deceptively strong currents year-round. Dam-release fluctuations can raise the river quickly; slippery rocks (wear real water shoes); canyon heat; rattlesnakes on rimrock; no cell service.",
+amen:"Vault toilets at campgrounds; no drinking water.",
+act:"Learn-to-fly-fish outings, bug safaris, campground basecamps, Chimney Rock sunset hike.",
+r:{wa:6,sw:1,cr:7,wi:8,ph:8,re:8,pi:7,sc:9,ad:6,ov:7},worth:"The best family fishing canyon around",len:"Full day–overnight",back:"Every year",tags:["wade","fish","creek","wildlife","free","hike"]},
+{id:"walton",name:"Walton Lake",region:"east",type:"18-acre forest lake, electric motors only",drive:85,gps:"44.433,-120.341",elev:"5,150 ft",agency:"Ochoco NF",months:"Jun–Sep",crowds:"Low-moderate",fees:"Day-use/campground fees apply",
+water:"Clear-to-tea-colored, mild, shallow over a mucky-gravel bottom; warms enough for real kid swims by midsummer.",
+wade:"The only easily swimmable mountain lake in the Ochocos — gentle, calm, and stocked with rainbows.",
+special:"Ponderosa parkland, fishing platforms, and a real chance of wild horses in the surrounding Big Summit country.",
+wildlife:"Wild horses (!), elk, woodpeckers, stocked trout.",
+safety:"Afternoon thunderstorms; remote with no services.",
+amen:"Campground, day-use, vault toilets, fishing platforms.",
+act:"Swim floats, canoeing, fishing, wild-horse spotting drives.",
+r:{wa:7,sw:6,cr:3,wi:7,ph:6,re:9,pi:8,sc:7,ad:4,ov:7},worth:"If you're Ochoco-bound, yes",len:"Half–full day",back:"Occasionally",tags:["swim","wade","fish","paddle"],
+n26:"Lake and campground open; ~⅓ mile of the shoreline trail closed for hazard-tree removal."}
+);
+D.push(
+{id:"harper",name:"Harper Bridge",region:"south",type:"Informal river put-in",drive:25,gps:"43.861,-121.473",elev:"4,170 ft",agency:"County road access; adjacent land private",months:"Jun–Sep",crowds:"Busy hot weekends; small gravel pullout fills",fees:"Free",
+water:"Clear, cold, slow; Spring River joins just upstream so flows stay steady; sandy-muddy bottom.",
+wade:"Kids wade and jump in at the put-in, but it's a launch point more than a beach.",
+special:"Start of the most popular Sunriver float: 1.8 easy miles (~45–60 min) to Besson, or 8.6 miles to the Sunriver takeout for a big day.",
+wildlife:"Otters, osprey, waterfowl.",
+safety:"No facilities, no lifeguard; current runs stronger than it looks during summer irrigation releases — jumpers and swimmers should stay near the bank. Surrounding land is private — stay in the river corridor; know your take-out.",
+amen:"None — no toilet, no trash.",
+act:"Starter floats, paddle trips up Spring River, quick swims.",
+r:{wa:6,sw:5,cr:4,wi:6,ph:5,re:7,pi:4,sc:7,ad:5,ov:6},worth:"As float logistics, essential",len:"1–4 hours",back:"Every float",tags:["paddle","swim","free"]},
+{id:"besson",name:"Besson Day Use",region:"south",type:"Flatwater river access & launch",drive:30,gps:"43.874,-121.46",elev:"4,160 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Moderate — lighter than Bend's floats",fees:"$5/day or NW Forest Pass (not sold on site)",
+water:"Clear, cold (upper 50s–low 60s °F midsummer), gentle 1–2 mph current; gradual sandy-silty banks.",
+wade:"Good wading at the launch; swimming is a brisk dip. Mostly the take-out cheer point for Harper Bridge floats.",
+special:"Meadow-and-lodgepole scenery, an easy launch, and the start of the 6.8-mile Besson-to-Sunriver canoe run for ambitious families.",
+wildlife:"Osprey, bald eagles, otters, mule deer, herons.",
+safety:"Summer irrigation releases from Wickiup keep this reach fuller and swifter than it looks — the 'gentle' current has real push Apr–mid-Oct. Downstream eventually reaches Benham Falls — families must exit at the Sunriver Canoe Takeout or Benham East. Brief before launching.",
+amen:"Boat ramp, accessible vault toilet, picnic tables; no water.",
+act:"Canoe/SUP flatwater, float take-out, picnics, beginner paddling.",
+r:{wa:7,sw:5,cr:4,wi:7,ph:6,re:8,pi:7,sc:7,ad:5,ov:7},worth:"The mellow-float anchor",len:"2–4 hours",back:"Yes",tags:["paddle","wade","wildlife"]},
+{id:"marina",name:"Sunriver Marina Float",region:"south",type:"Commercial float & paddle launch",drive:25,gps:"43.881,-121.455",elev:"4,150 ft",agency:"Sunriver Resort (private)",months:"~Memorial Day–Labor Day",crowds:"High July–August",fees:"Rental/launch fees; no federal pass needed",
+water:"Slow, clear, cold meanders through the Sunriver meadows.",
+wade:"Not a swim beach — this is the polished zero-logistics float operation.",
+special:"Tubes, canoes, kayaks, and SUPs with a return shuttle from the Benham Butte takeout: the easiest family float in the region, gorgeous meadow scenery included.",
+wildlife:"Meadow birdlife, osprey, eagles, deer along the banks.",
+safety:"Stay with the marked route; mandatory take-out before Benham Falls. Current is steadier and stronger than the glassy surface suggests during summer irrigation releases.",
+amen:"Rentals, restrooms, food at the marina.",
+act:"The 1.5–3 hour guided-route float, paddle rentals.",
+r:{wa:4,sw:3,cr:3,wi:7,ph:7,re:9,pi:6,sc:8,ad:5,ov:7},worth:"Worth the rental fee for zero hassle",len:"2–4 hours",back:"With visitors",tags:["paddle"]},
+{id:"bigriver",name:"Big River Day Use",region:"south",type:"River access & launch",drive:30,gps:"43.795,-121.492",elev:"4,180 ft",agency:"Deschutes NF",months:"May–Oct",crowds:"Low-moderate — the locals' alternative",fees:"FS page lists none; older sources say $5 — bring a pass",
+water:"Wide, slow, clear; sandy-silty bottom with shallow wadeable margins.",
+wade:"Good casual wading-beach feel right at the launch; cold but gentle.",
+special:"A bridge over the Deschutes, a campground across the road, and the mellow ~5-mile float down to Harper Bridge.",
+wildlife:"Beavers, otters, bald eagles, nighthawks at dusk.",
+safety:"Deceptively steady mid-channel current — noticeably stronger during Apr–mid-Oct irrigation releases; keep waders on the shallow margins; no lifeguard.",
+amen:"Boat ramp, vault toilet, picnic tables.",
+act:"Wading, picnicking, easy canoe/SUP, evening beaver watch.",
+r:{wa:8,sw:5,cr:5,wi:7,ph:6,re:8,pi:7,sc:7,ad:4,ov:7},worth:"Quietly excellent",len:"2–4 hours",back:"Yes",tags:["wade","paddle","wildlife","free"]},
+{id:"spring",name:"Spring River",region:"south",type:"1-mile spring-fed tributary",drive:25,gps:"43.856,-121.48",elev:"4,170 ft",agency:"Mixed private/Deschutes NF at the mouth",months:"Year-round flow; visit in summer",crowds:"Low",fees:"Free (access via Harper Bridge)",
+water:"Very clear, cold, slow, over lava ledges with undercut banks and small channel caves; sandy stretches.",
+wade:"Limited bank access (private homes above) — the move is paddling UP the Spring River from Harper Bridge and drifting back, spotting big trout over the side.",
+special:"A whole spring creek flowing over lava bedrock — glassy, green, and full of visible fish. The best canoe side-quest in the Sunriver area.",
+wildlife:"Large visible rainbows and browns, otters, kingfishers.",
+safety:"Cold water; respect private property lines; stay in the boat where banks are posted.",
+amen:"None — use Harper Bridge/Besson facilities.",
+act:"The paddle-up-and-drift-back trip, fish spotting, photography.",
+r:{wa:4,sw:2,cr:6,wi:8,ph:7,re:8,pi:4,sc:8,ad:6,ov:7},worth:"With a canoe, a gem",len:"1–2 hours",back:"On float days",tags:["paddle","wildlife","free","fish"]},
+{id:"fallriver",name:"Fall River & Headwater Springs",region:"south",type:"Spring-fed river, fly-only water",drive:37,gps:"43.767,-121.565",elev:"4,250 ft",agency:"Deschutes NF / ODFW",months:"May–Oct (flows year-round)",crowds:"Low — anglers and photographers",fees:"Free roadside access",
+water:"Exceptionally clear and cold (mid-40s–low 50s °F year-round); mostly 1–3 ft over sand and waving aquatic grasses; gentle current.",
+wade:"Beautiful shallow wading in calm stretches — genuinely cold, so it's a wade-and-explore river, not a swim.",
+special:"The river emerges FULL-GROWN from springs beside the 1930s Fall River Guard Station — an unforgettable ten-minute stop. Fly-fishing only, barbless: superb teaching water for a teen learning to cast.",
+wildlife:"Trout visible everywhere, mink, beavers, bald eagles.",
+safety:"Slippery woody debris; June–July mosquitoes.",
+amen:"Small campground, roadside pullouts, hatchery nearby.",
+act:"Springs pilgrimage, trout spotting, fly-casting lessons, photography, picnic.",
+r:{wa:8,sw:1,cr:9,wi:8,ph:9,re:9,pi:7,sc:9,ad:5,ov:8},worth:"Magic in a small package",len:"2–4 hours",back:"Regularly",tags:["creek","wade","fish","wildlife","free"]},
+{id:"fallriverfalls",name:"Fall River Falls",region:"south",type:"15-ft waterfall & pools",drive:35,gps:"43.779,-121.492",elev:"4,200 ft",agency:"Deschutes NF",months:"Apr–Nov",crowds:"Low — a genuine local secret",fees:"Free",
+water:"Clear and cold, dropping over a lava ledge into explorable pools and riffles.",
+wade:"Pool wading below the falls after a short, steep, dusty scramble down; cold but shallow and full of discoveries.",
+special:"An unmarked gravel turnoff hides a real waterfall a quarter-mile from the car — the reward-to-effort ratio kids dream about. Connects to a 4.5-mile river loop.",
+wildlife:"Dippers, trout, deer.",
+safety:"Muddy, steep bank paths; early-summer mosquito swarms; no facilities.",
+amen:"Dirt parking only.",
+act:"Short waterfall hike, pool wading, creek exploring downstream, photography.",
+r:{wa:7,sw:2,cr:8,wi:5,ph:8,re:7,pi:5,sc:8,ad:7,ov:7},worth:"The hidden-gem badge is deserved",len:"1–3 hours",back:"Yes",tags:["waterfall","creek","wade","free"]},
+{id:"lapinesp",name:"La Pine State Park",region:"south",type:"State park, Deschutes + Fall River confluence",drive:40,gps:"43.774,-121.535",elev:"4,200 ft",agency:"Oregon State Parks",months:"Jul–Aug for swimming; park year-round",crowds:"Moderate — rarely feels packed",fees:"$10/$12 day-use (new Oct 2025); waived for campers",
+water:"Clear, cold, slow oxbow meanders with a sandy designated swim beach and a shallow kid-friendly entry.",
+wade:"One of the better family swim spots on the upper Deschutes — sandy beach, gentle water, lawns behind (no lifeguard).",
+special:"Home of Big Tree: Oregon's largest ponderosa pine (162 ft, 28.9 ft around, ~500 years old) via a short paved trail. Fall River joins the Deschutes inside the park; paved bike trails link it all.",
+wildlife:"Deer, eagles, osprey, otters, woodpeckers.",
+safety:"Unguarded swim area; cold water; steep cutbanks on outside bends. The Deschutes here runs below Wickiup Dam, so current is stronger Apr–mid-Oct during irrigation releases — keep swimmers inside the designated beach area.",
+amen:"Flush restrooms, water, picnic areas, big campground with cabins, bike trails.",
+act:"Swim beach, Big Tree pilgrimage, family biking, paddling, fishing.",
+r:{wa:8,sw:7,cr:6,wi:7,ph:7,re:9,pi:9,sc:7,ad:4,ov:8},worth:"A complete family day, guaranteed",len:"Half–full day",back:"Yes",tags:["swim","wade","beach","paddle","hike"],
+n26:"Day-use parking fee began Oct 1, 2025 — $10 resident/$12 non-resident."},
+{id:"rosland",name:"Rosland Park (Little Deschutes)",region:"south",type:"Community park on a meander river",drive:35,gps:"43.712,-121.508",elev:"4,220 ft",agency:"La Pine Park & Rec District",months:"Jun–Sep",crowds:"Low — a local family spot",fees:"Day use free (donations welcome)",
+water:"Slower and noticeably warmer by late summer than the mainstem — tea-tinged clear water over sand, shallow near shore.",
+wade:"A 'soft landing' gradual entry makes this one of the friendliest wading spots anywhere in the region, and the warmest moving water in this guide.",
+special:"Tight river meanders make short lazy tube loops feel like expeditions; 42 acres with playground, pavilion, and campground.",
+wildlife:"Beavers, muskrats, waterfowl, redband and brown trout.",
+safety:"Undercut banks and snags typical of meander rivers; much of the Little Deschutes beyond parks is private — don't bank-hop.",
+amen:"Toilets, pavilion, playground, campground with host.",
+act:"Warm wading, short tube floats, playground breaks, fishing.",
+r:{wa:9,sw:6,cr:7,wi:6,ph:4,re:9,pi:8,sc:5,ad:4,ov:7},worth:"Warmest river wading around",len:"2–4 hours",back:"Summer regular",tags:["wade","swim","warm","creek","free"]},
+{id:"bullbend",name:"Bull Bend / Pringle Falls Stretch",region:"south",type:"Wild river horseshoe & self-shuttle float",drive:48,gps:"43.745,-121.617",elev:"4,280 ft",agency:"Deschutes NF",months:"Jun–Sep",crowds:"Very low — the quiet alternative",fees:"Free day use",
+water:"Clear, sandy-bottomed meanders through lodgepole wilds. This reach sits directly below Wickiup Dam, so summer irrigation releases keep it fuller and quicker than 'slow meander' suggests.",
+wade:"Sandy wading on the inside bends; fine for confident kid floats with PFDs — but respect the mid-channel push during release season.",
+special:"The river horseshoes almost completely around Bull Bend Campground: float the 2-mile bend in about an hour, then walk five minutes back to your towels. The perfect self-shuttling family float.",
+wildlife:"Otters, beavers, eagles, dawn elk.",
+safety:"CRITICAL: everyone must exit at Wyeth Campground — Pringle Falls immediately downstream is dangerous whitewater. Make it a sworn family rule before launching.",
+amen:"Primitive campgrounds, vault toilets, no water.",
+act:"The self-shuttle float (repeat x3), wading, camping, stargazing.",
+r:{wa:8,sw:5,cr:6,wi:7,ph:6,re:9,pi:7,sc:7,ad:7,ov:8},worth:"Genius logistics, zero crowds",len:"Half–full day",back:"Every summer",tags:["paddle","wade","swim","free","wildlife"]},
+{id:"paulinalake",name:"Paulina Lake & Hot Springs",region:"south",type:"1,530-acre caldera lake + beach hot springs",drive:52,gps:"43.712,-121.253",elev:"6,331 ft",agency:"USFS, Newberry NVM",months:"Mid-May–Oct; hot springs best May–Jul",crowds:"Moderate-high midsummer",fees:"$5/vehicle NVM day pass or NW Forest Pass",
+water:"Clear blue-green; cold most of summer, low-60s shallows by August; gravel-pumice shorelines with quick drop-offs in places; ~250 ft deep.",
+wade:"Swimmable for hardy kids late July–August — but the classic move is the hot-spring soak + cold-lake plunge cycle, repeated until dinner.",
+special:"Wild hot springs dug into the northeast beach sand (90–115 °F, ~1.2 mi walk from Little Crater CG): dig your own soaking pool with your hands. Plus Paulina Peak views, record brown trout, and the Big Obsidian Flow minutes away.",
+wildlife:"Bald eagles, osprey, huge browns and kokanee, golden-mantled ground squirrels raiding picnics.",
+safety:"High-elevation sun and fast afternoon thunderstorms; test hot-spring pools before kids sit (temps vary); cold open water; obsidian is genuinely sharp.",
+amen:"Paulina Lake Lodge (store, restaurant, rentals), boat ramps, campgrounds, vault toilets.",
+act:"Hot-springs engineering, lakeshore loop hike (7.5 mi), boat rental, obsidian flow trail, Paulina Peak drive.",
+r:{wa:6,sw:6,cr:4,wi:7,ph:9,re:8,pi:8,sc:10,ad:10,ov:9},worth:"A volcano with hot tubs — of course",len:"Full day",back:"Annual tradition material",tags:["hotspring","swim","wade","hike","paddle","fish"],
+n26:"Paulina Lake Rd opened May 7, 2026; campgrounds roughly May 22–Sep 27."},
+{id:"eastlake",name:"East Lake & Hot Springs",region:"south",type:"1,044-acre caldera lake, pumice beaches",drive:58,gps:"43.727,-121.202",elev:"6,380 ft",agency:"USFS, Newberry NVM",months:"Late Jun–Sep for swimming",crowds:"Moderate — quieter than Paulina",fees:"$5/vehicle NVM day pass or NW Forest Pass",
+water:"Emerald and very clear; NOTABLY warmer than Cascade lakes for its elevation thanks to geothermal vents — pleasant mid-60s+ shallows by August over white crushed-pumice 'sand.'",
+wade:"The best swimming in the caldera: gradual pumice-sand entries at the Cinder Hill/East Lake beaches, water that actually invites you to stay in.",
+special:"A white-sand-look beach inside a volcano, geothermal seeps bubbling along the southeast shore when levels are low, and osprey hitting the water all afternoon.",
+wildlife:"Osprey and eagles diving constantly; stocked trout, kokanee, Atlantic salmon; deer.",
+safety:"Long-standing mercury advisory for EATING larger fish (swimmers unaffected); afternoon storms; 10 mph boat limit keeps it calm.",
+amen:"East Lake Resort (cabins, store, rentals), three campgrounds, ramps, vault toilets.",
+act:"Beach day, warm-shallows swimming, hot-seep hunting, kayak rental, fishing.",
+r:{wa:9,sw:9,cr:3,wi:8,ph:9,re:9,pi:8,sc:10,ad:8,ov:10},worth:"The single best family lake day in this guide",len:"Full day",back:"Every single summer",tags:["swim","beach","warm","hotspring","paddle","fish","wildlife"]},
+{id:"paulinafalls",name:"Paulina Falls",region:"south",type:"80-ft twin waterfall",drive:50,gps:"43.708,-121.286",elev:"6,200 ft",agency:"USFS, Newberry NVM",months:"May–Oct by car",crowds:"High at the viewpoint; low below",fees:"NVM day pass / NW Forest Pass",
+water:"Cold creek water plunging over the caldera's west wall in twin curtains; mist zone at the base.",
+wade:"Viewing destination; older kids enjoy the steep 0.25-mile trail to the base pools — stay back from the rockfall zone.",
+special:"Twin 80-ft falls over volcanic cliffs, five minutes from the car — the perfect caldera-day opener.",
+wildlife:"Swallows swooping the gorge, dippers below.",
+safety:"Crumbling volcanic cliff edges — stay on trail; slippery at the base.",
+amen:"Vault toilets, picnic tables at the viewpoint lot.",
+act:"Falls viewpoints, base-of-falls hike, photography.",
+r:{wa:2,sw:1,cr:3,wi:4,ph:9,re:6,pi:7,sc:9,ad:5,ov:7},worth:"Mandatory caldera stop",len:"30–90 min",back:"Every Newberry trip",tags:["waterfall","hike"]},
+{id:"mckaycrossing",name:"Paulina Creek / McKay Crossing Waterslide",region:"south",type:"Creek waterfalls & natural rock waterslide",drive:42,gps:"43.726,-121.397",elev:"4,750 ft",agency:"Deschutes NF",months:"Jul–Aug when flows moderate",crowds:"Low-moderate — word-of-mouth famous",fees:"Free day parking at McKay Crossing (confirm signage)",
+water:"Cold, clear, tumbling creek descending 2,000+ ft from Paulina Lake over slickrock chutes and shallow pools.",
+wade:"The swimming hole below McKay Falls (short steep scramble) plus THE natural rock waterslide ~1.5 miles up the trail — the best older-kid creek adventure in this guide. Ages 10–16 is exactly the target demographic.",
+special:"The 8.4-mile Peter Skene Ogden Trail follows the creek past multiple falls and slides — pick your adventure length.",
+wildlife:"Deer, dippers, woodpeckers.",
+safety:"Slick rock, cold water, scraped-shorts territory: wear old shorts and water shoes. Shared with mountain bikes (downhill on odd days — verify signage).",
+amen:"Vault toilets and campsites at McKay Crossing CG; no water.",
+act:"Waterslide sessions, waterfall swimming hole, creek hiking.",
+r:{wa:8,sw:6,cr:10,wi:5,ph:7,re:6,pi:6,sc:8,ad:10,ov:9},worth:"The kids will talk about it all year",len:"Half day",back:"Repeatedly, by demand",tags:["creek","waterfall","swim","hike","free"]},
+{id:"twinlakes",name:"Twin Lakes (North & South)",region:"south",type:"Two round crater lakes, no motors",drive:52,gps:"43.728,-121.763",elev:"4,340 ft",agency:"Deschutes NF / Twin Lakes Resort",months:"May–Oct; resort restaurant to just after Labor Day",crowds:"Moderate at South (resort); North quieter",fees:"NW Forest Pass may apply at FS sites",
+water:"Clear shallow bowls that warm nicely by midsummer; gradual sandy-gravel entries; zero motorized wake.",
+wade:"Excellent family swimming — among the region's best: calm, warm-ish, gentle entries, and a resort cafe for post-swim milkshakes.",
+special:"Two nearly perfect circles punched by volcanic explosions; rowboat and SUP rentals; stocked rainbows; the civilized base for exploring wilder Wickiup next door.",
+wildlife:"Osprey, eagles, deer, evening bats over the water.",
+safety:"About as benign as lakes get; no lifeguard.",
+amen:"Resort (store, restaurant, cabins, showers, rentals), two campgrounds, vault toilets, launches.",
+act:"Swim, rowboat, the 1.4-mile South Twin loop walk, milkshakes.",
+r:{wa:9,sw:8,cr:3,wi:6,ph:6,re:10,pi:8,sc:7,ad:4,ov:8},worth:"Low-stress perfection",len:"Half–full day",back:"Yes, often",tags:["swim","wade","warm","paddle","fish"]},
+{id:"wickiup",name:"Wickiup Reservoir",region:"south",type:"10,000-acre irrigation reservoir",drive:60,gps:"43.68,-121.72",elev:"4,339 ft",agency:"Deschutes NF / Bureau of Reclamation",months:"May–Jul (major drawdown after)",crowds:"Low — kokanee anglers mostly",fees:"NW Forest Pass at developed sites",
+water:"Green-tinged, warm shallows (upper 60s–70 °F midsummer) over silty sand; the shoreline literally moves weekly as irrigation drawdown proceeds.",
+wade:"Marginal: warm but murky with muddy entries. Splash early season at Gull Point; by August it's mudflat hiking. Swim at Twin Lakes next door instead.",
+special:"The drawdown exposes stump fields and drowned river channels — weirdly fascinating exploring — plus a famous brown trout and kokanee fishery and huge skies.",
+wildlife:"Eagles, terns, sandhill cranes on the flats, mule deer, Oregon spotted frog habitat management.",
+safety:"Soft mud near the receding waterline; historic algae advisories; long distances from help; late-season ramps strand boats.",
+amen:"Gull Point and other campgrounds, launches, vault toilets; minimal cell.",
+act:"Early-summer fishing, birding, stump-field expeditions, combined with Twin Lakes swims.",
+r:{wa:4,sw:3,cr:4,wi:8,ph:6,re:6,pi:5,sc:7,ad:6,ov:5},worth:"For anglers and bird nerds",len:"2–4 hours",back:"Early season",tags:["fish","wildlife"],
+n26:"Significant 2026 drawdown expected (weak snowpack); some docks not installed. 2024 fire scars nearby; closures lifted."},
+{id:"davis",name:"Davis Lake",region:"south",type:"Huge shallow lava-dammed lake",drive:72,gps:"43.590,-121.848",elev:"4,390 ft",agency:"Deschutes NF (Crescent RD)",months:"May–early Jul (shrinks visibly after)",crowds:"Very low — fly anglers and birders",fees:"Free/NW Forest Pass where posted",
+water:"Shallow, weedy, warm, and marsh-edged over a soft bottom; a porous 6,000-year-old lava dam literally drains it through summer.",
+wade:"Not a swim lake — warm mucky wading at best. Bring binoculars, not towels.",
+special:"Scramble the dramatic black lava dam on the north shore, then watch sandhill cranes lift off the marsh. Fly-fishing-only water with big rainbows and (illegal-immigrant) largemouth bass.",
+wildlife:"One of Central Oregon's best bird sites: cranes, terns, grebes, eagles; dawn elk.",
+safety:"Remote, no services, soft mud, early mosquito clouds.",
+amen:"Two campgrounds, vault toilets, ramps (10 mph).",
+act:"Birding, lava scrambling, early-season canoeing, teen fly-casting.",
+r:{wa:3,sw:1,cr:4,wi:9,ph:7,re:8,pi:5,sc:8,ad:6,ov:6},worth:"For wildlife-first families",len:"Half day",back:"Early summer",tags:["wildlife","fish","paddle","free"]},
+{id:"crescent",name:"Crescent Lake / Simax Beach",region:"south",type:"4,000-acre ultra-clear lake, sand beaches",drive:80,gps:"43.507,-121.965",elev:"4,839 ft",agency:"Deschutes NF (Crescent RD)",months:"Jul–Aug beach season",crowds:"Moderate; fills hot Saturdays without Elk Lake chaos",fees:"$5/day or NW Forest Pass (sold on site), May–Sep",
+water:"One of Oregon's clearest lakes — Caribbean-looking shallows over pale pumice sand; 60s °F shallows by August; a LONG gradual sandy shelf lets kids wade way out; the open lake is deep (265 ft) and wind-prone.",
+wade:"THE sand-beach destination of the south: North and South Simax are genuine sandy beaches on a protected bay (south beach pet-free).",
+special:"Real sand, Diamond Peak on the horizon, and Crescent Lake Resort rentals (kayaks, SUPs, paddle boats). Sandcastle capital of the Cascades.",
+wildlife:"Osprey, eagles; mackinaw and kokanee below.",
+safety:"Afternoon west wind builds real waves on the open lake — keep paddle craft in the bay; cold deep water beyond the shelf.",
+amen:"Vault toilets and picnic sites at both Simax areas, campgrounds, resort store.",
+act:"The full beach commitment: swim, castle, paddle, repeat.",
+r:{wa:9,sw:9,cr:2,wi:5,ph:9,re:9,pi:8,sc:9,ad:5,ov:9},worth:"Worth every one of the 80 minutes",len:"Full day",back:"The annual beach day",tags:["beach","swim","wade","paddle"]},
+{id:"odell",name:"Odell Lake",region:"south",type:"Deep glacial lake (3,582 acres)",drive:85,gps:"43.567,-122.03",elev:"4,787 ft",agency:"Deschutes NF (Crescent RD)",months:"Late May–Oct; fall for kokanee viewing",crowds:"Low-moderate — a fishing lake first",fees:"Day-use/launch fees or NW Forest Pass",
+water:"Clear, deep, and COLD all summer; rocky-gravel shorelines that drop off fast; the windiest lake in this guide.",
+wade:"A wade-and-skip-rocks lake for most kids; swimming possible near campgrounds for the determined.",
+special:"Oregon's record lake trout (~40 lb) lives here; Shelter Cove Resort charters put kids on kokanee; in fall, Trapper Creek fills with scarlet spawning kokanee — a fantastic wildlife lesson.",
+wildlife:"Bald eagles, osprey, the fall kokanee run.",
+safety:"Afternoon west winds make the lake dangerously rough for small craft — paddle mornings only, near shore; Sunset Cove takes the biggest waves.",
+amen:"Two resorts, multiple campgrounds, ramps, day-use areas with water and toilets.",
+act:"Kokanee fishing charters, morning kayaks, fall spawning-run viewing, rock skipping.",
+r:{wa:4,sw:3,cr:4,wi:8,ph:7,re:7,pi:6,sc:8,ad:6,ov:6},worth:"For fishing and fall kokanee",len:"Half–full day",back:"For the fish",tags:["fish","wildlife","paddle"],
+n26:"Had an algae advisory Aug 2025 (lifted) — check OHA in late summer."}
+);
+/*__DATA__*/
+
+// ---------- render ----------
+const RL={wa:"Wading",sw:"Swimming",cr:"Creek explor.",wi:"Wildlife",ph:"Photography",re:"Relaxing",pi:"Picnicking",sc:"Scenic beauty",ad:"Adventure",ov:"OVERALL"};
+function esc(s){return (s||"").replace(/&(?!amp;|lt;|gt;)/g,"&amp;")}
+function card(d){
+  const r=d.r;
+  const ratings=Object.keys(RL).map(k=>`<div class="rr"><span>${RL[k]}</span><b class="bar"><i style="width:${r[k]*10}%"></i></b><em>${r[k]}</em></div>`).join("");
+  const tags=(d.tags||[]).map(t=>`<span class="badge">${TAGS[t]||t}</span>`).join("");
+  return `<details class="dest" data-region="${d.region}" data-tags="${(d.tags||[]).join(" ")}" id="d-${d.id}">
+  <summary>
+    <div class="advring" style="--p:${d.r.ov*10}"><i>${d.r.ov}</i></div>
+    <div class="dname">${esc(d.name)}<small>${esc(d.type)} · ${esc(d.agency)}</small></div>
+    <span class="badge drive">🚗 ${d.driveLabel||d.drive+" min"}</span>
+    <span class="badge">${RSHORT[d.region]}</span>
+  </summary>
+  <div class="dbody">
+    <div class="tagsline" style="margin-top:10px">${tags}</div>
+    <div class="dgrid">
+      <div class="fact"><b>GPS / Map</b><a class="ext maplink" target="_blank" href="https://maps.google.com/?q=${d.gps}">${d.gps}</a> · ${esc(d.elev)}</div>
+      <div class="fact"><b>Best months</b>${esc(d.months)}</div>
+      <div class="fact"><b>Crowds</b>${esc(d.crowds)}</div>
+      <div class="fact"><b>Fees & passes</b>${esc(d.fees)}</div>
+    </div>
+    <div class="blocks">
+      <div class="blk"><h5>Water</h5><p>${esc(d.water)}</p></div>
+      <div class="blk"><h5>Wading & Swimming</h5><p>${esc(d.wade)}</p></div>
+      <div class="blk"><h5>What Makes It Special</h5><p>${esc(d.special)}</p></div>
+      <div class="blk"><h5>Wildlife</h5><p>${esc(d.wildlife)}</p></div>
+      <div class="blk safety"><h5>⚠ Safety</h5><p>${esc(d.safety)}</p></div>
+      <div class="blk"><h5>Amenities</h5><p>${esc(d.amen)}</p></div>
+      <div class="blk"><h5>Best Activities</h5><p>${esc(d.act)}</p></div>
+    </div>
+    <div class="ratings">${ratings}</div>
+    <div class="verdict">
+      <div class="vchip"><b>Worth the drive?</b>${esc(d.worth)}</div>
+      <div class="vchip"><b>Ideal visit length</b>${esc(d.len)}</div>
+      <div class="vchip"><b>Would we come back?</b>${esc(d.back)}</div>
+    </div>
+    ${d.n26?`<div class="note26">📌 <b>2026:</b> ${esc(d.n26)}</div>`:""}
+  </div></details>`;
+}
+function render(){
+  const c=document.getElementById("cards");
+  let html="";
+  for(const rg of Object.keys(REGIONS)){
+    const items=D.filter(d=>d.region===rg);
+    if(!items.length)continue;
+    html+=`<div class="region-head" id="r-${rg}"><h2>${REGIONS[rg]}</h2><span class="rmeta">${items.length} spots · ${REGIONMETA[rg]}</span></div>`;
+    html+=items.map(card).join("");
+  }
+  c.innerHTML=html;
+  document.getElementById("statCount").textContent=D.length;
+  buildTable();buildPills();applyFilters();
+}
+// ---------- filters ----------
+const active=new Set();
+function buildPills(){
+  const p=document.getElementById("pills");
+  p.innerHTML=Object.entries(TAGS).map(([k,v])=>`<button class="pill" data-t="${k}">${v}</button>`).join("");
+  p.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{
+    const t=b.dataset.t; active.has(t)?active.delete(t):active.add(t);
+    b.classList.toggle("on"); applyFilters();
+  });
+}
+function applyFilters(){
+  const q=document.getElementById("q").value.toLowerCase().trim();
+  let shown=0;
+  document.querySelectorAll(".dest").forEach(el=>{
+    const d=D.find(x=>"d-"+x.id===el.id);
+    const hay=(d.name+" "+d.type+" "+d.special+" "+d.wildlife+" "+d.act+" "+d.water+" "+(d.tags||[]).map(t=>TAGS[t]).join(" ")).toLowerCase();
+    const okQ=!q||hay.includes(q);
+    const okT=[...active].every(t=>(d.tags||[]).includes(t));
+    el.classList.toggle("hidden",!(okQ&&okT));
+    if(okQ&&okT)shown++;
+  });
+  document.querySelectorAll(".region-head").forEach(h=>{
+    const rg=h.id.replace("r-","");
+    const any=[...document.querySelectorAll(`.dest[data-region="${rg}"]`)].some(e=>!e.classList.contains("hidden"));
+    h.classList.toggle("hidden",!any);
+  });
+  document.getElementById("shownCount").textContent=shown+" / "+D.length+" shown";
+}
+document.getElementById("q").addEventListener("input",applyFilters);
+// ---------- summary table ----------
+let sortK="ov",sortDir=-1;
+function buildTable(){
+  const tb=document.querySelector("#sumtbl tbody");
+  const rows=[...D].sort((a,b)=>{
+    let va,vb;
+    if(["sw","wa","cr","ov"].includes(sortK)){va=a.r[sortK];vb=b.r[sortK]}
+    else if(sortK==="drive"){va=a.drive;vb=b.drive}
+    else{va=(a[sortK]||"").toString().toLowerCase();vb=(b[sortK]||"").toString().toLowerCase()}
+    return va<vb?-1*sortDir:va>vb?1*sortDir:0;
+  });
+  tb.innerHTML=rows.map(d=>`<tr onclick="goDest('${d.id}')" style="cursor:pointer">
+    <td><a class="tlink" href="#d-${d.id}" onclick="event.preventDefault();event.stopPropagation();goDest('${d.id}')">${esc(d.name)}</a></td><td>${RSHORT[d.region]}</td><td class="num">${d.drive}</td>
+    <td>${esc(d.type)}</td><td class="num">${d.r.sw}</td><td class="num">${d.r.wa}</td><td class="num">${d.r.cr}</td>
+    <td class="num"><b>${d.r.ov}</b></td><td>${esc(d.months)}</td></tr>`).join("");
+}
+function goDest(id){
+  const el=document.getElementById("d-"+id);
+  if(!el)return;
+  if(el.classList.contains("hidden")){
+    document.getElementById("q").value="";
+    active.clear();
+    document.querySelectorAll(".pill.on").forEach(p=>p.classList.remove("on"));
+    applyFilters();
+  }
+  el.open=true;
+  el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.querySelectorAll("#sumtbl th").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.k; sortDir=(sortK===k)?-sortDir:(["sw","wa","cr","ov"].includes(k)?-1:1); sortK=k; buildTable();
+});
+render();
+</script>
+</body>
+</html>
