@@ -68,7 +68,14 @@ a.ext:hover{color:var(--goldl)}
 .pill.on{background:var(--river);color:#fff}
 .count{font-size:.75rem;font-weight:500;color:var(--ink2);margin-left:auto}
 /* ---------- destination cards ---------- */
-.region-head{display:flex;align-items:baseline;gap:14px;margin:40px 0 4px;border-bottom:2px solid var(--river);padding-bottom:6px}
+.region-head{display:flex;align-items:baseline;gap:14px;margin:24px 0 4px;border-bottom:2px solid var(--river);padding-bottom:6px;cursor:pointer}
+.region-head:hover h2{color:var(--river2)}
+h2 .chev,.region-head .chev{display:inline-block;margin-left:auto;color:var(--gold);font-size:.65em;transition:transform .2s;vertical-align:middle}
+h2.sec .chev{margin-left:10px}
+h2.sec{cursor:pointer}
+section.closed .wrap>*:not(h2.sec){display:none!important}
+section.closed h2 .chev,.region-head.closed .chev{transform:rotate(-90deg)}
+.rbody.collapsed{display:none}
 .region-head h2{margin:0}
 .region-head .rmeta{font-size:.72rem;font-weight:500;letter-spacing:.04em;color:var(--ink2)}
 .dest{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden;scroll-margin-top:104px}
@@ -1249,10 +1256,15 @@ function render(){
   for(const rg of Object.keys(REGIONS)){
     const items=D.filter(d=>d.region===rg);
     if(!items.length)continue;
-    html+=`<div class="region-head" id="r-${rg}"><h2>${REGIONS[rg]}</h2><span class="rmeta">${items.length} spots · ${REGIONMETA[rg]}</span></div>`;
-    html+=items.map(card).join("");
+    html+=`<div class="region-head closed" id="r-${rg}" data-rg="${rg}"><h2>${REGIONS[rg]}</h2><span class="rmeta">${items.length} spots · ${REGIONMETA[rg]} — click to expand</span><span class="chev">▾</span></div>`;
+    html+=`<div class="rbody collapsed" id="rb-${rg}">`+items.map(card).join("")+`</div>`;
   }
   c.innerHTML=html;
+  c.querySelectorAll(".region-head").forEach(h=>h.onclick=()=>{
+    const rb=document.getElementById("rb-"+h.dataset.rg);
+    rb.classList.toggle("collapsed");
+    h.classList.toggle("closed",rb.classList.contains("collapsed"));
+  });
   document.getElementById("statCount").textContent=D.length;
   buildTable();buildPills();applyFilters();
 }
@@ -1278,9 +1290,12 @@ function applyFilters(){
     if(okQ&&okT)shown++;
   });
   document.querySelectorAll(".region-head").forEach(h=>{
-    const rg=h.id.replace("r-","");
+    const rg=h.dataset.rg;
     const any=[...document.querySelectorAll(`.dest[data-region="${rg}"]`)].some(e=>!e.classList.contains("hidden"));
     h.classList.toggle("hidden",!any);
+    const rb=document.getElementById("rb-"+rg);
+    rb.classList.toggle("hidden",!any);
+    if((q||active.size)&&any){rb.classList.remove("collapsed");h.classList.remove("closed");}
   });
   document.getElementById("shownCount").textContent=shown+" / "+D.length+" shown";
 }
@@ -1310,13 +1325,33 @@ function goDest(id){
     document.querySelectorAll(".pill.on").forEach(p=>p.classList.remove("on"));
     applyFilters();
   }
+  const rb=el.closest(".rbody");
+  if(rb){rb.classList.remove("collapsed");const rh=document.getElementById("r-"+el.dataset.region);if(rh)rh.classList.remove("closed");}
   el.open=true;
-  el.scrollIntoView({behavior:"smooth",block:"start"});
+  if(el.scrollIntoView)el.scrollIntoView({behavior:"smooth",block:"start"});
 }
 document.querySelectorAll("#sumtbl th").forEach(th=>th.onclick=()=>{
   const k=th.dataset.k; sortDir=(sortK===k)?-sortDir:(["sw","wa","cr","ov"].includes(k)?-1:1); sortK=k; buildTable();
 });
+["plan","table","best","itin","safety"].forEach(id=>{
+  const sec=document.getElementById(id);if(!sec)return;
+  const h=sec.querySelector("h2");
+  h.classList.add("sec");h.insertAdjacentHTML("beforeend",'<span class="chev">▾</span>');
+  h.onclick=()=>sec.classList.toggle("closed");
+  if(id!=="plan")sec.classList.add("closed");
+});
+function openHash(){
+  const id=location.hash.slice(1);if(!id)return;
+  const sec=document.getElementById(id);
+  if(sec&&sec.tagName==="SECTION")sec.classList.remove("closed");
+  if(id.startsWith("r-")){
+    const rb=document.getElementById("rb-"+id.slice(2));
+    if(rb){rb.classList.remove("collapsed");sec&&sec.classList&&document.getElementById(id).classList.remove("closed");}
+  }
+}
+window.addEventListener("hashchange",openHash);
 render();
+openHash();
 </script>
 </body>
 </html>
