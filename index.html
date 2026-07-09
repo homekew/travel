@@ -28,13 +28,14 @@ header{
 header::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:url("header.jpg") center/cover no-repeat;opacity:.25;}
 header .wrap{position:relative;z-index:1}
-.kicker{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--goldl)}
-h1{font-weight:700;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.02em;margin:.4em 0 .35em;max-width:18ch}
-h1 em{font-style:normal;font-weight:700;color:var(--goldl)}
-.sub{max-width:60ch;color:rgba(255,255,255,.78);font-size:1rem;font-weight:300;line-height:1.7}
-.hero-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.hstat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 14px;font-size:.78rem;color:rgba(255,255,255,.7)}
-.hstat b{color:var(--goldl);font-size:1.05rem;display:block;font-weight:600}
+.masthead{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:12px;margin-bottom:36px}
+h1{font-weight:700;font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.12;letter-spacing:-.02em;margin:0 0 .4em;max-width:20ch}
+h1 .over{display:block;font-size:.42em;font-weight:300;font-style:italic;letter-spacing:.01em;color:rgba(255,255,255,.85);margin-bottom:.5em}
+.sub{max-width:58ch;color:rgba(255,255,255,.75);font-size:.98rem;font-weight:300;line-height:1.7}
+.statline{display:flex;flex-wrap:wrap;margin-top:34px;font-size:.8rem;color:rgba(255,255,255,.6)}
+.statline span{padding:2px 20px 2px 0;margin-right:20px;border-right:1px solid rgba(255,255,255,.22)}
+.statline span:last-child{border-right:none;margin-right:0;padding-right:0}
+.statline b{color:var(--goldl);font-weight:700;font-size:.95rem;margin-right:4px}
 /* ---------- nav ---------- */
 nav{position:sticky;top:0;z-index:40;background:rgba(30,58,79,.97);backdrop-filter:blur(6px)}
 nav .wrap{display:flex;gap:2px;overflow-x:auto;padding:0 12px}
@@ -139,14 +140,14 @@ footer a{color:var(--goldl)}
 
 <header>
   <div class="wrap">
-    <div class="kicker">A Field Guide for Water-Loving Families · 2026 Edition</div>
-    <h1>The Ultimate Central Oregon <em>Water Adventure</em> Guide</h1>
+    <div class="masthead"><span>A Family Field Guide</span><span>Bend, Oregon · Summer 2026</span></div>
+    <h1><span class="over">The ultimate guide to</span>Central Oregon Water Adventures</h1>
     <p class="sub">A guide to public rivers, creeks, lakes, reservoirs, springs, waterfalls, and swimming areas within about 90 minutes of Bend, Oregon. Information verified summer 2026. Written for families with kids ages 10 to 16.</p>
-    <div class="hero-stats">
-      <div class="hstat"><b id="statCount">—</b>destinations</div>
-      <div class="hstat"><b>6</b>regions</div>
-      <div class="hstat"><b>5–90</b>min from Bend</div>
-      <div class="hstat"><b>2026</b>fees &amp; closures verified</div>
+    <div class="statline">
+      <span><b id="statCount">—</b>destinations</span>
+      <span><b>6</b>regions</span>
+      <span><b>5–90</b>min from Bend</span>
+      <span><b>2026</b>fees &amp; closures verified</span>
     </div>
   </div>
 </header>
